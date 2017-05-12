@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Video streaming web">
+    <meta name="author" content="GROUP XX DAW">
+    <title>Streamix</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <!-- stilos -->
+    <link rel="stylesheet" type="text/css" href="../static/css/base.css" th:href="@{/css/base.css}">
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="peliculas.html">Streamix</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right dropdown">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"
+                                                                        aria-hidden="true"></span> Administracion</a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"></span> Administrar Usuarios</a>
+                        </li>
+                        <li>
+                            <a href="#"></span> Administrar Peliculas</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="../loginAntiguo.html"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                Log out</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--<li>
+                    <a href="../loginAntiguo.html"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                        Log out</a>
+                </li>-->
+            </ul>
+        </div>
+        <!--/.navbar-collapse -->
+    </div>
+</nav>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/2jqI2DD621A" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div >
+        <h2>Otras peliculas</h2>
+    </div>
+    <hr class="featurette-divider">
+    <a class="styless" href="direccion de la peli">
+        <section class="row">
+            <div class="col-md-2">
+                <img class="img-responsive center-block" src="http://globedia.com/imagenes/noticias/2012/6/10/carteles-favoritos-alien_1_1250766.jpg" alt="Titulo de la peli">
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-9">
+                <h2>Pelicula adadad</h2>
+                <span class="text-muted">Autor asdasdasd.</span>
+                <p class="lead">Sinopsis muy brebe de la pelicula.</p>
+            </div>
+        </section>
+    </a>
+    <hr class="featurette-divider">
+    <a class="styless" href="direccion de la peli">
+        <section class="row">
+            <div class="col-md-2">
+                <img class="img-responsive center-block" src="http://globedia.com/imagenes/noticias/2012/6/10/carteles-favoritos-alien_1_1250766.jpg" alt="Titulo de la peli">
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-9">
+                <h2>Pelicula adadad</h2>
+                <span class="text-muted">Autor asdasdasd.</span>
+                <p class="lead">Sinopsis muy brebe de la pelicula.</p>
+            </div>
+        </section>
+    </a>
+    <hr class="featurette-divider">
+    <a class="styless" href="direccion de la peli">
+        <section class="row">
+            <div class="col-md-2">
+                <img class="img-responsive center-block" src="http://globedia.com/imagenes/noticias/2012/6/10/carteles-favoritos-alien_1_1250766.jpg" alt="Titulo de la peli">
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-9">
+                <h2>Pelicula adadad</h2>
+                <span class="text-muted">Autor asdasdasd.</span>
+                <p class="lead">Sinopsis muy brebe de la pelicula.</p>
+            </div>
+        </section>
+    </a>
+    <hr class="featurette-divider">
+</div>
+
+</body>
+</html>

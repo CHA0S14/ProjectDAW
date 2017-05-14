@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="Video streaming web">
+        <meta name="author" content="GROUP XX DAW">
+        <title>Streamix</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+              integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous"></script>
+        <!-- stilos -->
+        <link rel="stylesheet" type="text/css" href="../css/base.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="./peliculas.html">Streamix</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right dropdown">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"
+                                                                                aria-hidden="true"></span> Administracion</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#"> Administrar Usuarios</a>
+                                </li>
+                                <li>
+                                    <a href="#"> Administrar Peliculas</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                        Log out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.navbar-collapse -->
+            </div>
+        </nav>
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar usuario">
+                        <div class="input-group-btn">
+                            <button class="btn btn-info">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="container">
+            <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#modal-create-user">Crear nuevo usuario</button>
+            <br/>
+            <section class="row well">
+                <div class="col-md-5">
+                    <p><strong>Usuario:</strong> Manolo López del Valle</p>
+                    <p><strong>E-mail:</strong> mlopez@pepe.com</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Tipo:</strong> Usuario</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-change-user">Modificar</button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-user">Eliminar</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Modal -->
+        <div id="modal-create-user" class="modal fade" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h3 class="modal-title">Alta de usuarios</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="usr">*Nombre de usuario:</label>
+                            <input type="text" class="form-control" id="usr">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">*Dirección de correo:</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="re-email">*Repita la dirección de correo:</label>
+                            <input type="text" class="form-control" id="re-email">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">*Contraseña:</label>
+                            <input type="password" class="form-control" id="pwd">
+                        </div>
+                        <div class="form-group">
+                            <label for="re-psw">*Repita la contraseña:</label>
+                            <input type="password" class="form-control" id="re-psw">
+                        </div>
+                        <p><small>(*) Apartados obligatorios.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-change-user" class="modal fade" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h3 class="modal-title">Información de usuario</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="usr2">Nombre de usuario:</label>
+                            <input type="text" class="form-control" value="Manolo López del Valle" id="usr2">
+                        </div>
+                        <div class="form-group">
+                            <label for="email2">Dirección de correo:</label>
+                            <input type="text" class="form-control" value="mlopez@pepe.com" id="email2">
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña:</label>
+                            <br>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-change-pwd">Cambiar contraseña</button>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label for="sel1">Tipo:</label>
+                                <select class="form-control" id="sel1">
+                                    <option value="0">-- Seleccione el tipo de usuario --</option>
+                                    <option value="1">Usuario</option>
+                                    <option value="2">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-change-pwd" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title">Cambio de contraseña</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="pwd2">*Introduzca la nueva contraseña:</label>
+                            <input type="password" class="form-control" id="pwd2">
+                        </div>
+                        <div class="form-group">
+                            <label for="re-pwd2">*Repita la nueva contraseña:</label>
+                            <input type="password" class="form-control" id="re-pwd2">
+                        </div>
+                        <p><small>(*) Apartados obligatorios.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal-delete-user" class="modal fade" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h3 class="modal-title">Baja de usuarios</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Está seguro de querer dar de baja a este usuario?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

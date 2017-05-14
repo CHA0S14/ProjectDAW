@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ProjectDAW.iml" filepath="$PROJECT_DIR$/ProjectDAW.iml" />
-      <module fileurl="file://C:\Users\ismae\OneDrive\Universidad\4ºCurso\8ºSemestre\Diseño de aplicaciones web\ProjectDAW\ProjectDAW.iml" filepath="C:\Users\ismae\OneDrive\Universidad\4ºCurso\8ºSemestre\Diseño de aplicaciones web\ProjectDAW\ProjectDAW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Project.iml" filepath="$PROJECT_DIR$/Project.iml" />
     </modules>
   </component>
 </project>

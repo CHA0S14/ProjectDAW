@@ -19,6 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <script src="../static/js/pelis.js" th:src="@{/js/adminPelis.js}"></script>
     <!-- stilos -->
     <link rel="stylesheet" type="text/css" href="../static/css/base.css" th:href="@{/css/base.css}">
 </head>
@@ -76,7 +77,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container" id="listaPelis">
     <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#modal-create-movie">Crear nueva película</button>
     <br/>
     <section th:each="peli : ${pelis}" class="row well">
@@ -91,7 +92,7 @@
                     <p th:utext="'<strong>Director:</strong>' + ${peli.director}"></p>
                     <p th:utext="'<strong>Reparto de actores:</strong>' + ${peli.reparto}"></p>
                     <p th:utext="'<strong>Valoración:</strong>' + ${peli.valoracion}"></p>
-                    <p th:utext="'<strong>URL:</strong>' + ${peli.url}"></p>
+                    <p th:utext="'<strong>Url:</strong>' + ${peli.url}"></p>
                 </div>
                 <div class="col-md-6">
                     <p th:utext="'<strong>Descripción:</strong>' + ${peli.descripcion}"></p>
@@ -106,6 +107,7 @@
         </div>
     </section>
 </div>
+<div class="container" id="loadmoreajaxloader"></div>
 
 <!-- Modal -->
 <div id="modal-create-movie" class="modal fade" role="dialog">

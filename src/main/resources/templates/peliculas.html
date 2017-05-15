@@ -82,7 +82,8 @@
     </div>
 </div>
 <div class="container" id="listaPelis">
-    <a th:each="peli : ${pelis}" class="styless" href="direccion de la peli">
+    <a th:each="peli : ${pelis}" class="styless" th:href="'../reproductor?id=' + ${peli.id}">
+        <hr class="featurette-divider">
         <section class="row well">
             <div class="col-md-2">
                 <img class="img-responsive center-block" th:src="${peli.portada}" th:alt="${peli.nombre}">

@@ -1,4 +1,5 @@
-<a xmlns:th="http://www.thymeleaf.org" th:each="peli : ${pelis}" class="styless" href="direccion de la peli">
+<a xmlns:th="http://www.thymeleaf.org" th:each="peli : ${pelis}" class="styless" th:href="'../reproductor?id=' + ${peli.id}">
+    <hr class="featurette-divider">
     <section class="row well">
         <div class="col-md-2">
             <img class="img-responsive center-block" th:src="${peli.portada}" th:alt="${peli.nombre}">

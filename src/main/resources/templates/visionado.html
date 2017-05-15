@@ -19,6 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <script src="../static/js/pelis.js" th:src="@{/js/pelis.js}"></script>
     <!-- stilos -->
     <link rel="stylesheet" type="text/css" href="../static/css/base.css" th:href="@{/css/base.css}">
 </head>
@@ -69,59 +70,30 @@
 <div class="jumbotron">
     <div class="container">
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/2jqI2DD621A" frameborder="0" allowfullscreen></iframe>
+            <iframe width="560" height="315" th:src="${peli.url}" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </div>
 
-<div class="container">
+<div class="container" id="listaPelis">
     <div >
         <h2>Otras peliculas</h2>
     </div>
-    <hr class="featurette-divider">
-    <a class="styless" href="direccion de la peli">
-        <section class="row">
+    <a th:each="peli : ${pelis}" class="styless" th:href="'../reproductor?id=' + ${peli.id}">
+        <hr class="featurette-divider">
+        <section class="row well">
             <div class="col-md-2">
-                <img class="img-responsive center-block" src="http://globedia.com/imagenes/noticias/2012/6/10/carteles-favoritos-alien_1_1250766.jpg" alt="Titulo de la peli">
+                <img class="img-responsive center-block" th:src="${peli.portada}" th:alt="${peli.nombre}">
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-9">
-                <h2>Pelicula adadad</h2>
-                <span class="text-muted">Autor asdasdasd.</span>
-                <p class="lead">Sinopsis muy brebe de la pelicula.</p>
+                <h2 th:text="${peli.nombre}"></h2>
+                <span class="text-muted" th:text="${peli.director}"></span>
+                <p class="lead" th:text="${peli.descripcion}"></p>
             </div>
         </section>
     </a>
-    <hr class="featurette-divider">
-    <a class="styless" href="direccion de la peli">
-        <section class="row">
-            <div class="col-md-2">
-                <img class="img-responsive center-block" src="http://globedia.com/imagenes/noticias/2012/6/10/carteles-favoritos-alien_1_1250766.jpg" alt="Titulo de la peli">
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-9">
-                <h2>Pelicula adadad</h2>
-                <span class="text-muted">Autor asdasdasd.</span>
-                <p class="lead">Sinopsis muy brebe de la pelicula.</p>
-            </div>
-        </section>
-    </a>
-    <hr class="featurette-divider">
-    <a class="styless" href="direccion de la peli">
-        <section class="row">
-            <div class="col-md-2">
-                <img class="img-responsive center-block" src="http://globedia.com/imagenes/noticias/2012/6/10/carteles-favoritos-alien_1_1250766.jpg" alt="Titulo de la peli">
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-9">
-                <h2>Pelicula adadad</h2>
-                <span class="text-muted">Autor asdasdasd.</span>
-                <p class="lead">Sinopsis muy brebe de la pelicula.</p>
-            </div>
-        </section>
-    </a>
-    <hr class="featurette-divider">
 </div>
-
+<div class="container" id="loadmoreajaxloader"></div>
 </body>
 </html>

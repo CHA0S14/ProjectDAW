@@ -5,6 +5,7 @@ import com.DAW.Project.Repositories.PelisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
@@ -40,7 +41,11 @@ public class PelisController {
 
     @RequestMapping("/peliculas" )
     public ModelAndView peliculas() {
-        return new ModelAndView( "peliculas" ).addObject("pelis", repository.findAll());
+        return new ModelAndView( "peliculas" ).addObject("pelis", repository.findByIdIsBetween(0,5));
+    }
+    @RequestMapping("/listPelis" )
+    public ModelAndView lista(@RequestParam Long id) {
+        return new ModelAndView( "pelisList" ).addObject("pelis", repository.findByIdIsBetween(id,id+5));
     }
     @RequestMapping("/reproductor" )
     public ModelAndView reproductor() {

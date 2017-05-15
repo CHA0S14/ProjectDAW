@@ -16,4 +16,5 @@ public interface PelisRepository extends CrudRepository<Pelicula, Long> {
     List<Pelicula> findByRepartoContaining(String reparto);
     List<Pelicula> findByValoracionIsGreaterThan(double valoracion);
     List<Pelicula> findByAnio(int anio);
+    List<Pelicula> findByIdIsBetween(long ini, long fin);
 }

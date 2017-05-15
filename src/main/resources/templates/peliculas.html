@@ -19,6 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <script src="../static/js/pelis.js" th:src="@{/js/pelis.js}"></script>
     <!-- stilos -->
     <link rel="stylesheet" type="text/css" href="../static/css/base.css" th:href="@{/css/base.css}">
 </head>
@@ -80,7 +81,7 @@
         </form>
     </div>
 </div>
-<div class="container">
+<div class="container" id="listaPelis">
     <a th:each="peli : ${pelis}" class="styless" href="direccion de la peli">
         <section class="row well">
             <div class="col-md-2">
@@ -95,5 +96,6 @@
         </section>
     </a>
 </div>
+<div class="container" id="loadmoreajaxloader"></div>
 </body>
 </html>

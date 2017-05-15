@@ -18,6 +18,9 @@ public class Usuario {
     private String email;
     private boolean admin;
 
+    public Usuario() {
+    }
+
     public Usuario(int id, String usuario, String pass, String email, boolean admin) {
         this.id = id;
         this.usuario = usuario;

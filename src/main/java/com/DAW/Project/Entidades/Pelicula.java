@@ -1,9 +1,6 @@
 package com.DAW.Project.Entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by ismael on 15/05/2017.
@@ -15,12 +12,17 @@ public class Pelicula {
     private long id;
     private String nombre;
     private String url;
+    @Lob
+    @Column(name="descripcion", length=512)
     private String descripcion;
     private int anio;
     private String director;
     private String reparto;
     private String portada;
     private double valoracion;
+
+    public Pelicula() {
+    }
 
     public Pelicula(String nombre, String url, String descripcion, int anio, String director, String reparto, String portada, double valoracion) {
         this.nombre = nombre;

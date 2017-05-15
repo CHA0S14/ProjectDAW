@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,23 +79,22 @@
 <div class="container">
     <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#modal-create-movie">Crear nueva película</button>
     <br/>
-    <section class="row well">
+    <section th:each="peli : ${pelis}" class="row well">
         <div class="col-md-2">
-            <img class="img-responsive center-block" src="http://globedia.com/imagenes/noticias/2012/6/10/carteles-favoritos-alien_1_1250766.jpg" alt="Titulo de la peli">
+            <img class="img-responsive center-block" th:src="${peli.portada}" th:alt="${peli.nombre}">
         </div>
         <div class="col-md-7">
-            <h2><strong>Título:</strong> Terminator 32</h2>
+            <h2 th:text="${peli.nombre}"></h2>
             <div class="row">
                 <div class="col-md-6">
-                    <p><strong>Año:</strong> 1359</p>
-                    <p><strong>Director:</strong> Miriam Blanco</p>
-                    <p><strong>Reparto de actores:</strong> Johny Deep</p>
-                    <p><strong>Valoración:</strong> 2/5</p>
-                    <p><strong>URL:</strong> http://...</p>
+                    <p th:utext="'<strong>Año:</strong>' + ${peli.anio}"></p>
+                    <p th:utext="'<strong>Director:</strong>' + ${peli.director}"></p>
+                    <p th:utext="'<strong>Reparto de actores:</strong>' + ${peli.reparto}"></p>
+                    <p th:utext="'<strong>Valoración:</strong>' + ${peli.valoracion}"></p>
+                    <p th:utext="'<strong>URL:</strong>' + ${peli.url}"></p>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Descripción:</strong> Ridley Scott vuelve al universo que creó en Alien con Alien: Covenant, el segundo capítulo de la trilogía-precuela que comenzó con Prometheus y que conecta directamente con el trabajo de 1979 de Scott en la ciencia ficción.
-                        Anclado en un planeta remoto en el punto más alejado de la galaxia, el equipo de la nave Covenant descubre lo que creen que es un inexplorado paraíso, pero en realidad es un oscuro y peligroso mundo cuyo único habitante es el sintético David (Michael Fassbender), superviviente de la desafortunada expedición Prometheus. </p>
+                    <p th:utext="'<strong>Descripción:</strong>' + ${peli.descripcion}"></p>
                 </div>
             </div>
         </div>

@@ -81,42 +81,16 @@
     </div>
 </div>
 <div class="container">
-    <a class="styless" href="direccion de la peli">
+    <a th:each="peli : ${pelis}" class="styless" href="direccion de la peli">
         <section class="row well">
             <div class="col-md-2">
-                <img class="img-responsive center-block" src="http://globedia.com/imagenes/noticias/2012/6/10/carteles-favoritos-alien_1_1250766.jpg" alt="Titulo de la peli">
+                <img class="img-responsive center-block" th:src="${peli.portada}" th:alt="${peli.nombre}">
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-9">
-                <h2>Pelicula adadad</h2>
-                <span class="text-muted">Autor asdasdasd.</span>
-                <p class="lead">Sinopsis muy brebe de la pelicula.</p>
-            </div>
-        </section>
-    </a>
-    <a class="styless" href="direccion de la peli">
-        <section class="row well">
-            <div class="col-md-2">
-                <img class="img-responsive center-block" src="http://globedia.com/imagenes/noticias/2012/6/10/carteles-favoritos-alien_1_1250766.jpg" alt="Titulo de la peli">
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-9">
-                <h2>Pelicula adadad</h2>
-                <span class="text-muted">Autor asdasdasd.</span>
-                <p class="lead">Sinopsis muy brebe de la pelicula.</p>
-            </div>
-        </section>
-    </a>
-    <a class="styless" href="direccion de la peli">
-        <section class="row well">
-            <div class="col-md-2">
-                <img class="img-responsive center-block" src="http://globedia.com/imagenes/noticias/2012/6/10/carteles-favoritos-alien_1_1250766.jpg" alt="Titulo de la peli">
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-9">
-                <h2>Pelicula adadad</h2>
-                <span class="text-muted">Autor asdasdasd.</span>
-                <p class="lead">Sinopsis muy brebe de la pelicula.</p>
+                <h2 th:text="${peli.nombre}"></h2>
+                <span class="text-muted" th:text="${peli.director}"></span>
+                <p class="lead" th:text="${peli.descripcion}"></p>
             </div>
         </section>
     </a>

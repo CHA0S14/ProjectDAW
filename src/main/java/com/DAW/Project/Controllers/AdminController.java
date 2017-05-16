@@ -25,7 +25,11 @@ public class AdminController {
     public ModelAndView listPelis(@RequestParam Long id){
         return new ModelAndView( "adminPeliList" ).addObject("pelis",peliRepository.findByIdIsBetween(id,id + 5));
     }
-    @RequestMapping("/adminUser" )
+    @RequestMapping("/buscaAdminPelis" )
+    public ModelAndView lista(@RequestParam String texto) {
+        return new ModelAndView( "adminPeliList" ).addObject("pelis", peliRepository.findTop10ByNombreContainsOrDescripcionContainsOrDirectorContainsOrRepartoContains(texto,texto,texto,texto));
+    }
+    @RequestMapping("/adminUsers" )
     public ModelAndView usuarios() {
         return new ModelAndView( "adminUsers" ).addObject("users",userRepository.findAll());
     }

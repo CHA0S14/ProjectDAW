@@ -3,11 +3,14 @@
     <section class="row well">
         <div class="col-md-2">
             <img class="img-responsive center-block" th:src="${peli.portada}" th:alt="${peli.nombre}">
+            <p th:utext="'<strong>Valoración:</strong>' + ${peli.valoracion}"></p>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-9">
             <h2 th:text="${peli.nombre}"></h2>
-            <span class="text-muted" th:text="${peli.director}"></span>
+            <span class="text-muted" th:text="${peli.anio} + ' - ' + ${peli.director}"></span>
+            <br/>
+            <span class="text-muted" th:text="${peli.reparto}"></span>
             <p class="lead" th:text="${peli.descripcion}"></p>
         </div>
     </section>

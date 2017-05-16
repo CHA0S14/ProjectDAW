@@ -19,9 +19,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <script src="../static/js/pelis.js" th:src="@{/js/adminPelis.js}"></script>
+    <script th:src="@{/js/listaAdminPelis.js}"></script>
+    <script th:src="@{/js/busquedaAdminPelis.js}"></script>
     <!-- stilos -->
-    <link rel="stylesheet" type="text/css" href="../static/css/base.css" th:href="@{/css/base.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}">
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -44,10 +45,7 @@
                                                                         aria-hidden="true"></span> Administracion</a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Administrar Usuarios</a>
-                        </li>
-                        <li>
-                            <a href="#">Administrar Peliculas</a>
+                            <a href="adminUsers"></span> Administrar Usuarios</a>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li>
@@ -64,11 +62,11 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <form>
+        <form id="buscar">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Buscar pelicula">
+                <input type="text" class="form-control" placeholder="Buscar pelicula" id="busqueda">
                 <div class="input-group-btn">
-                    <button class="btn btn-info">
+                    <button class="btn btn-info" type="submit">
                         <i class="glyphicon glyphicon-search"></i>
                     </button>
                 </div>
@@ -77,9 +75,11 @@
     </div>
 </div>
 
-<div class="container" id="listaPelis">
+<div class="container">
     <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#modal-create-movie">Crear nueva película</button>
     <br/>
+</div>
+<div class="container" id="listaPelis">
     <section th:each="peli : ${pelis}" class="row well">
         <div class="col-md-2">
             <img class="img-responsive center-block" th:src="${peli.portada}" th:alt="${peli.nombre}">

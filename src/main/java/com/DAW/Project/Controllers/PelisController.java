@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by ismael on 14/05/2017.
@@ -25,6 +29,10 @@ public class PelisController {
     @RequestMapping("/listPelis" )
     public ModelAndView lista(@RequestParam Long id) {
         return new ModelAndView( "pelisList" ).addObject("pelis", repository.findByIdIsBetween(id,id+5));
+    }
+    @RequestMapping("/buscaPelis" )
+    public ModelAndView lista(@RequestParam String texto) {
+        return new ModelAndView( "pelisList" ).addObject("pelis", repository.findTop10ByNombreContainsOrDescripcionContainsOrDirectorContainsOrRepartoContains(texto,texto,texto,texto));
     }
     @RequestMapping("/reproductor" )
     public ModelAndView reproductor(@RequestParam Long id) {

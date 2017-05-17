@@ -11,3 +11,7 @@ a.styless {
   color:#000000 !important;
   text-decoration:none;
 }
+
+.alert{
+  text-align: center;
+}

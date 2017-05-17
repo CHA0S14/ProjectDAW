@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="./peliculas.html">Streamix</a>
+            <a class="navbar-brand" href="peliculas.html">Streamix</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right dropdown">
@@ -56,17 +56,12 @@
                         </li>
                     </ul>
                 </li>
-                <li th:if="${not admin}">
-                    <a href="" class="logOut">
-                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out
-                    </a>
-                </li>
             </ul>
         </div>
         <!--/.navbar-collapse -->
     </div>
 </nav>
-
+<form th:action="@{/logout}" method="post" id="logOutForm"></form>
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">

@@ -26,7 +26,8 @@ public class PelisController {
     @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @RequestMapping("/peliculas" )
     public ModelAndView peliculas() {
-        return new ModelAndView( "peliculas" ).addObject("pelis", repository.findByIdIsBetween(0,5)).addObject("admin", hasRole("ROLE_ADMIN"));
+        return new ModelAndView( "peliculas" ).addObject("pelis", repository.findByIdIsBetween(0,5))
+                .addObject("admin", hasRole("ROLE_ADMIN"));
     }
     @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @RequestMapping("/listPelis" )
@@ -41,7 +42,8 @@ public class PelisController {
     @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @RequestMapping("/reproductor" )
     public ModelAndView reproductor(@RequestParam Long id) {
-        return new ModelAndView( "visionado" ).addObject("peli", repository.findOne(id)).addObject("pelis", repository.findByIdIsBetween(0,5));
+        return new ModelAndView( "reproductor" ).addObject("peli", repository.findOne(id)).addObject("pelis", repository.findByIdIsBetween(0,5))
+                .addObject("admin", hasRole("ROLE_ADMIN"));
     }
 
     protected boolean hasRole(String role) {

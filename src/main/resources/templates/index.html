@@ -35,8 +35,12 @@
 <div class="container" id="login">
     <div class="wrapper">
         <form class="form-signin"  th:action="@{/}"  method="post">
-            <p class="error" th:if="${param.error}">Invalid credentials</p>
-            <p class="info" th:if="${param.logout}">Logged out</p>
+            <div class="alert alert-danger" th:if="${param.error}">
+                <p>Invalid credentials</p>
+            </div>
+            <div class="alert alert-info" th:if="${param.logout}">
+                <p>Logged out</p>
+            </div>
             <h2>Please login</h2>
             <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
             <input type="password" class="form-control" name="password" placeholder="Password" required=""/>

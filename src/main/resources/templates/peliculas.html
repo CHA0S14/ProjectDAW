@@ -21,6 +21,7 @@
             crossorigin="anonymous"></script>
     <script th:src="@{/js/listaPelis.js}"></script>
     <script th:src="@{/js/busquedaPelis.js}"></script>
+    <script th:src="@{/js/logOut.js}"></script>
     <!-- stilos -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}">
 </head>
@@ -39,34 +40,36 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right dropdown">
-                <li class="dropdown">
+                <li th:if="${admin}" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"
                                                                         aria-hidden="true"></span> Administracion</a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="adminUsers"></span> Administrar Usuarios</a>
+                            <a href="adminUsers">Administrar Usuarios</a>
                         </li>
                         <li>
-                            <a href="adminPelis"></span> Administrar Peliculas</a>
+                            <a href="adminPelis">Administrar Peliculas</a>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <a href="../loginAntiguo.html"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                                Log out</a>
+                            <a href="" class="logOut">
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out
+                            </a>
                         </li>
                     </ul>
                 </li>
-                <!--<li>
-                    <a href="../loginAntiguo.html"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                        Log out</a>
-                </li>-->
+                <li th:if="${not admin}">
+                    <a href="" class="logOut">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out
+                    </a>
+                </li>
             </ul>
         </div>
         <!--/.navbar-collapse -->
     </div>
 </nav>
-
+<form th:action="@{/logout}" method="post" id="logOutForm"></form>
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">

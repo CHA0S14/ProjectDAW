@@ -21,6 +21,7 @@
             crossorigin="anonymous"></script>
     <script th:src="@{/js/listaAdminPelis.js}"></script>
     <script th:src="@{/js/busquedaAdminPelis.js}"></script>
+    <script th:src="@{/js/logOut.js}"></script>
     <!-- stilos -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}">
 </head>
@@ -49,9 +50,16 @@
                         </li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>Log out</a>
+                            <a href="" class="logOut">
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out
+                            </a>
                         </li>
                     </ul>
+                </li>
+                <li th:if="${not admin}">
+                    <a href="" class="logOut">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out
+                    </a>
                 </li>
             </ul>
         </div>

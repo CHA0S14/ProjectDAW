@@ -1,9 +1,10 @@
 package com.DAW.Project.Entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by ismael on 15/05/2017.
@@ -16,24 +17,25 @@ public class Usuario {
     private String usuario;
     private String pass;
     private String email;
-    private boolean admin;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<GrantedAuthority> roles;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String usuario, String pass, String email, boolean admin) {
-        this.id = id;
+    public Usuario(String usuario, String pass, String email, List<GrantedAuthority> roles) {
         this.usuario = usuario;
-        this.pass = pass;
+        this.pass = new BCryptPasswordEncoder().encode(pass);
         this.email = email;
-        this.admin = admin;
+        this.roles = roles;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -61,11 +63,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public boolean isAdmin() {
-        return admin;
+    public List<GrantedAuthority> getRoles() {
+        return roles;
     }
 
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
+    public void setRoles(List<GrantedAuthority> roles) {
+        this.roles = roles;
     }
 }

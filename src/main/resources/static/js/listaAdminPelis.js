@@ -1,6 +1,6 @@
 fin = false;
 loading = false;
-nextpage = 6;
+nextpage = 1;
 
 $(window).scroll(function() {
     if (!loading && $(window).scrollTop() >= ($('#listaPelis').offset().top + $('#listaPelis').outerHeight() - window.innerHeight)) {
@@ -18,7 +18,7 @@ $(window).scroll(function() {
                 {
                     $("#listaPelis").append(html);
                     $('div#loadmoreajaxloader').hide();
-                    nextpage += 5;
+                    nextpage ++;
                     loading = false;
                 }
                 else

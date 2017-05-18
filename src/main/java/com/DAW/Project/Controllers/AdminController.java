@@ -2,6 +2,7 @@ package com.DAW.Project.Controllers;
 
 import com.DAW.Project.Repositories.PelisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,17 +22,17 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @RequestMapping("/adminPelis" )
     public ModelAndView peliculas() {
-        return new ModelAndView( "adminMovies" ).addObject("pelis",peliRepository.findByIdIsBetween(0,5));
+        return new ModelAndView( "adminMovies" ).addObject("pelis",peliRepository.findAll(new PageRequest(0,5)));
     }
     @Secured("ROLE_ADMIN")
     @RequestMapping("/adminListPelis")
     public ModelAndView listPelis(@RequestParam Long id){
-        return new ModelAndView( "adminPeliList" ).addObject("pelis",peliRepository.findByIdIsBetween(id,id + 5));
+        return new ModelAndView( "adminPeliList" ).addObject("pelis",peliRepository.findAll(new PageRequest(id.intValue(),5)));
     }
     @Secured("ROLE_ADMIN")
     @RequestMapping("/buscaAdminPelis" )
     public ModelAndView lista(@RequestParam String texto) {
-        return new ModelAndView( "adminPeliList" ).addObject("pelis", peliRepository.findTop10ByNombreContainsOrDescripcionContainsOrDirectorContainsOrRepartoContains(texto,texto,texto,texto));
+        return new ModelAndView( "adminPeliList" ).addObject("pelis", peliRepository.findByNombreContainsOrDescripcionContainsOrDirectorContainsOrRepartoContains(texto,texto,texto,texto,new PageRequest(0,5)));
     }
     @Secured("ROLE_ADMIN")
     @RequestMapping("/adminUsers" )

@@ -5,20 +5,27 @@ $(document).ready(function() {
         busqueda = $("#busqueda").val();
         if (!loading2) {
             loading2 = true;
-            $.ajax
-            ({
-                url: "buscaPelis",
-                method: "get",
-                data: {texto: busqueda},
-                success: function (html) {
-                    if (html) {
-                        $("#listaPelis").html(html);
+            if (busqueda != ""){
+                $.ajax
+                ({
+                    url: "buscaPelis",
+                    method: "get",
+                    data: {texto: busqueda},
+                    success: function (html) {
+                        if (html) {
+                            $("#listaPelis").html(html);
+                        }
+                        loading2 = false;
+                        loading = false;
+                        isBusqueda=true;
+                        nextpage = 1;
+                        $('div#loadmoreajaxloader').html('');
+                        $('div#loadmoreajaxloader').hide();
                     }
-                    loading2 = false;
-                    loading = true;
-                    $('div#loadmoreajaxloader').hide();
-                }
-            }); // close AJAX
+                }); // close AJAX
+            }else if (isBusqueda){
+                $(location).attr('href', 'peliculas')
+            }
         }
     });
 });

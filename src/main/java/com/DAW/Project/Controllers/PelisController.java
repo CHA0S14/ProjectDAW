@@ -2,6 +2,7 @@ package com.DAW.Project.Controllers;
 
 import com.DAW.Project.Repositories.PelisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
+import java.awt.print.Pageable;
 import java.util.*;
 
 /**
@@ -26,23 +28,28 @@ public class PelisController {
     @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @RequestMapping("/peliculas" )
     public ModelAndView peliculas() {
-        return new ModelAndView( "peliculas" ).addObject("pelis", repository.findByIdIsBetween(0,5))
+        return new ModelAndView( "peliculas" ).addObject("pelis", repository.findAll(new PageRequest(0,5)))
                 .addObject("admin", hasRole("ROLE_ADMIN"));
     }
     @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @RequestMapping("/listPelis" )
-    public ModelAndView lista(@RequestParam Long id) {
-        return new ModelAndView( "pelisList" ).addObject("pelis", repository.findByIdIsBetween(id,id+5));
+    public ModelAndView lista(@RequestParam int pagina) {
+        return new ModelAndView( "pelisList" ).addObject("pelis", repository.findAll(new PageRequest(pagina,5)));
     }
     @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @RequestMapping("/buscaPelis" )
-    public ModelAndView lista(@RequestParam String texto) {
-        return new ModelAndView( "pelisList" ).addObject("pelis", repository.findTop10ByNombreContainsOrDescripcionContainsOrDirectorContainsOrRepartoContains(texto,texto,texto,texto));
+    public ModelAndView busqueda(@RequestParam String texto) {
+        return new ModelAndView( "pelisList" ).addObject("pelis", repository.findByNombreContainsOrDescripcionContainsOrDirectorContainsOrRepartoContains(texto,texto,texto,texto, new PageRequest(0,5)));
+    }
+    @Secured({ "ROLE_USER", "ROLE_ADMIN" })
+    @RequestMapping("/buscaPelisList" )
+    public ModelAndView busquedaLista(@RequestParam String texto, @RequestParam int pagina) {
+        return new ModelAndView( "pelisList" ).addObject("pelis", repository.findByNombreContainsOrDescripcionContainsOrDirectorContainsOrRepartoContains(texto,texto,texto,texto, new PageRequest(pagina,5)));
     }
     @Secured({ "ROLE_USER", "ROLE_ADMIN" })
     @RequestMapping("/reproductor" )
     public ModelAndView reproductor(@RequestParam Long id) {
-        return new ModelAndView( "reproductor" ).addObject("peli", repository.findOne(id)).addObject("pelis", repository.findByIdIsBetween(0,5))
+        return new ModelAndView( "reproductor" ).addObject("peli", repository.findOne(id)).addObject("pelis", repository.findAll(new PageRequest(0,5)))
                 .addObject("admin", hasRole("ROLE_ADMIN"));
     }
 

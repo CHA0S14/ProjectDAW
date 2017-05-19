@@ -50,8 +50,18 @@ public class AdminController {
         return new ModelAndView( "adminUsers" ).addObject("users",userRepository.findAll(new PageRequest(0,5)));
     }
     @Secured("ROLE_ADMIN")
-    @RequestMapping("/adminUsersList" )
+    @RequestMapping("/adminListUsers" )
     public ModelAndView usuariosList(@RequestParam int pagina) {
-        return new ModelAndView( "adminUsersList" ).addObject("users",userRepository.findAll(new PageRequest(pagina,5)));
+        return new ModelAndView( "adminUserList" ).addObject("users",userRepository.findAll(new PageRequest(pagina,5)));
+    }
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("/buscaAdminUsers" )
+    public ModelAndView busquedaUsuarios(@RequestParam String texto) {
+        return new ModelAndView( "adminUserList" ).addObject("users",userRepository.findByUsuarioContainsOrEmailContains(texto, texto, new PageRequest(0,5)));
+    }
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("/buscaAdminUsersList" )
+    public ModelAndView busquedaUsuarios(@RequestParam int pagina, @RequestParam String texto) {
+        return new ModelAndView( "adminUserList" ).addObject("users",userRepository.findByUsuarioContainsOrEmailContains(texto, texto, new PageRequest(pagina,5)));
     }
 }

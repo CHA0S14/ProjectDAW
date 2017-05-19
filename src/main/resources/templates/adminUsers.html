@@ -19,6 +19,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
                 crossorigin="anonymous"></script>
+        <script th:src="@{/js/listaAdminUsers.js}"></script>
+        <script th:src="@{/js/busquedaAdminUsers.js}"></script>
         <script th:src="@{/js/logOut.js}"></script>
         <!-- stilos -->
         <link rel="stylesheet" type="text/css" href="../css/base.css">
@@ -63,9 +65,9 @@
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
-                <form>
+                <form id="buscar">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar usuario">
+                        <input type="text" class="form-control" placeholder="Buscar usuario" id="busqueda">
                         <div class="input-group-btn">
                             <button class="btn btn-info">
                                 <i class="glyphicon glyphicon-search"></i>
@@ -79,6 +81,8 @@
         <div class="container">
             <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#modal-create-user">Crear nuevo usuario</button>
             <br/>
+        </div>
+        <div class="container"  id="listaUsers">
             <section th:each="user : ${users}" class="row well">
                 <div class="col-md-5">
                     <p th:utext="'<strong>Usuario:</strong>' + ${user.usuario}"></p>
@@ -95,7 +99,7 @@
                 </div>
             </section>
         </div>
-
+        <div class="container" id="loadmoreajaxloader"></div>
         <!-- Modal -->
         <div id="modal-create-user" class="modal fade" role="dialog">
             <div class="modal-dialog" role="document">

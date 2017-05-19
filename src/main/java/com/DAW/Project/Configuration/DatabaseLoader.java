@@ -81,5 +81,11 @@ public class DatabaseLoader {
         GrantedAuthority[] adminRoles = {new SimpleGrantedAuthority("ROLE_USER"), new SimpleGrantedAuthority("ROLE_ADMIN")};
         userRepository.save(new Usuario("root", "toor", "admin@admin.com", Arrays.asList(adminRoles)));
         userRepository.save(new Usuario("user", "pass", "user@user.com", Arrays.asList(userRoles)));
+        userRepository.save(new Usuario("user1", "pass", "user1@user.com", Arrays.asList(userRoles)));
+        userRepository.save(new Usuario("user2", "pass", "user2@user.com", Arrays.asList(userRoles)));
+        userRepository.save(new Usuario("user3", "pass", "user3@user.com", Arrays.asList(userRoles)));
+        userRepository.save(new Usuario("user4", "pass", "user4@user.com", Arrays.asList(userRoles)));
+        userRepository.save(new Usuario("user5", "pass", "user5@user.com", Arrays.asList(userRoles)));
+        userRepository.save(new Usuario("user6", "pass", "user6@user.com", Arrays.asList(userRoles)));
     }
 }

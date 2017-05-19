@@ -13,5 +13,6 @@ import java.util.List;
  */
 public interface UserRepository extends CrudRepository<Usuario, Long> {
     Usuario findByUsuario(String usuario);
+    List<Usuario> findByUsuarioContainsOrEmailContains(String usuario, String email, Pageable pageable);
     Page<Pelicula> findAll(Pageable pageable);
 }

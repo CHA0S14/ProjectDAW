@@ -1,6 +1,7 @@
 package com.DAW.Project.Entidades;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Usuario {
     private String usuario;
     private String pass;
     private String email;
+    private String tipo;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<GrantedAuthority> roles;
@@ -29,6 +31,7 @@ public class Usuario {
         this.pass = new BCryptPasswordEncoder().encode(pass);
         this.email = email;
         this.roles = roles;
+        setTipo("");
     }
 
     public long getId() {
@@ -69,5 +72,16 @@ public class Usuario {
 
     public void setRoles(List<GrantedAuthority> roles) {
         this.roles = roles;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        if (roles.contains(new SimpleGrantedAuthority("ROLE_ADMIN")))
+            this.tipo = "Administrador";
+        else
+            this.tipo = "Usuario";
     }
 }

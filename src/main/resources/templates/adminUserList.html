@@ -1,0 +1,15 @@
+<section xmlns:th="http://www.thymeleaf.org" th:each="user : ${users}" class="row well">
+    <div class="col-md-5">
+        <p th:utext="'<strong>Usuario:</strong>' + ${user.usuario}"></p>
+        <p th:utext="'<strong>Email:</strong>' + ${user.email}"></p>
+    </div>
+    <div class="col-md-4">
+        <p th:utext="'<strong>Tipo:</strong>' + ${user.tipo}"><strong>Tipo:</strong> Usuario</p>
+    </div>
+    <div class="col-md-3">
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-change-user">Modificar</button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-user">Eliminar</button>
+        </div>
+    </div>
+</section>

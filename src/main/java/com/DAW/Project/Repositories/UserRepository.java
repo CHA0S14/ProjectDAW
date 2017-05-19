@@ -1,6 +1,9 @@
 package com.DAW.Project.Repositories;
 
+import com.DAW.Project.Entidades.Pelicula;
 import com.DAW.Project.Entidades.Usuario;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -10,4 +13,5 @@ import java.util.List;
  */
 public interface UserRepository extends CrudRepository<Usuario, Long> {
     Usuario findByUsuario(String usuario);
+    Page<Pelicula> findAll(Pageable pageable);
 }

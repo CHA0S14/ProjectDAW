@@ -79,13 +79,13 @@
         <div class="container">
             <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#modal-create-user">Crear nuevo usuario</button>
             <br/>
-            <section class="row well">
+            <section th:each="user : ${users}" class="row well">
                 <div class="col-md-5">
-                    <p><strong>Usuario:</strong> Manolo López del Valle</p>
-                    <p><strong>E-mail:</strong> mlopez@pepe.com</p>
+                    <p th:utext="'<strong>Usuario:</strong>' + ${user.usuario}"></p>
+                    <p th:utext="'<strong>Email:</strong>' + ${user.email}"></p>
                 </div>
                 <div class="col-md-4">
-                    <p><strong>Tipo:</strong> Usuario</p>
+                    <p th:utext="'<strong>Tipo:</strong>' + ${user.tipo}"><strong>Tipo:</strong> Usuario</p>
                 </div>
                 <div class="col-md-3">
                     <div class="btn-group pull-right">

@@ -96,7 +96,8 @@
             <div class="col-md-1"></div>
             <div class="col-md-9">
                 <h2 th:text="${peli.nombre}"></h2>
-                <span class="text-muted" th:text="${peli.anio} + ' - ' + ${peli.director}"></span>
+                <span th:if="${!peli.director.equals('')}" class="text-muted" th:text="${peli.anio} + ' - ' + ${peli.director}"></span>
+                <span th:if="${peli.director.equals('')}" class="text-muted" th:text="${peli.anio}"></span>
                 <br/>
                 <span class="text-muted" th:text="${peli.reparto}"></span>
                 <p class="lead" th:text="${peli.descripcion}"></p>

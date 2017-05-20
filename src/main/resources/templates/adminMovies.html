@@ -92,7 +92,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <p th:utext="'<strong>Año:</strong>' + ${peli.anio}"></p>
-                    <p th:utext="'<strong>Director:</strong>' + ${peli.director}"></p>
+                    <p th:if="${!peli.director.equals('')}" th:utext="'<strong>Director:</strong>' + ${peli.director}"></p>
+                    <p th:if="${peli.director.equals('')}"><strong>Director:</strong> -</p>
                     <p th:utext="'<strong>Reparto de actores:</strong>' + ${peli.reparto}"></p>
                     <p th:utext="'<strong>Valoración:</strong>' + ${peli.valoracion}"></p>
                     <p th:utext="'<strong>Url:</strong>' + ${peli.url}"></p>
@@ -123,45 +124,46 @@
                 </button>
                 <h3 class="modal-title">Alta de peliculas</h3>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="name">*Nombre de la película:</label>
-                    <input type="text" class="form-control" id="name">
+            <form action="addPeli" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">*Nombre de la película:</label>
+                        <input type="text" class="form-control" id="name" name="nombre" required="" autofocus="">
+                    </div>
+                    <div class="form-group">
+                        <label for="url-cont">*URL del contenido:</label>
+                        <input type="text" class="form-control" id="url-cont" name="url" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Año:</label>
+                        <input type="text" class="form-control" id="year" name="anio">
+                    </div>
+                    <div class="form-group">
+                        <label for="addr">Director:</label>
+                        <input type="text" class="form-control" id="addr" name="director">
+                    </div>
+                    <div class="form-group">
+                        <label for="reparto">Reparto de actores:</label>
+                        <input type="text" class="form-control" id="reparto" name="reparto">
+                    </div>
+                    <div class="form-group">
+                        <label for="url-port">URL de la portada:</label>
+                        <input type="text" class="form-control" id="url-port" name="portada">
+                    </div>
+                    <div class="form-group">
+                        <label for="val">Valoración:</label>
+                        <input type="text" class="form-control" id="val" name="valoracion">
+                    </div>
+                    <div class="form-group">
+                        <label for="desc">Descripción:</label>
+                        <textarea class="form-control" rows="10" id="desc" name="descripcion"></textarea>
+                    </div>
+                    <p><small>(*) Apartados obligatorios.</small></p>
                 </div>
-                <div class="form-group">
-                    <label for="url-cont">*URL del contenido:</label>
-                    <input type="text" class="form-control" id="url-cont">
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Aceptar</button>
                 </div>
-                <div class="form-group">
-                    <label for="year">Año:</label>
-                    <input type="text" class="form-control" id="year">
-                </div>
-                <div class="form-group">
-                    <label for="addr">Director:</label>
-                    <input type="text" class="form-control" id="addr">
-                </div>
-                <div class="form-group">
-                    <label for="reparto">Reparto de actores:</label>
-                    <input type="text" class="form-control" id="reparto">
-                </div>
-                <div class="form-group">
-                    <label for="url-port">URL de la portada:</label>
-                    <input type="text" class="form-control" id="url-port">
-                </div>
-                <div class="form-group">
-                    <label for="val">Valoración:</label>
-                    <input type="text" class="form-control" id="val">
-                </div>
-                <div class="form-group">
-                    <label for="desc">Descripción:</label>
-                    <textarea class="form-control" rows="10" id="desc"></textarea>
-                </div>
-                <p><small>(*) Apartados obligatorios.</small></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>

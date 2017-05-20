@@ -7,8 +7,10 @@
         <div class="row">
             <div class="col-md-6">
                 <p th:utext="'<strong>Año:</strong>' + ${peli.anio}"></p>
-                <p th:utext="'<strong>Director:</strong>' + ${peli.director}"></p>
-                <p th:utext="'<strong>Reparto de actores:</strong>' + ${peli.reparto}"></p>
+                <p th:if="${!peli.director.equals('')}" th:utext="'<strong>Director:</strong>' + ${peli.director}"></p>
+                <p th:if="${peli.director.equals('')}"><strong>Director:</strong> -</p>
+                <p th:if="${!peli.reparto.equals('')}" th:utext="'<strong>Reparto de actores:</strong>' + ${peli.reparto}"></p>
+                <p th:if="${peli.reparto.equals('')}"><strong>Reparto de actores:</strong> -</p>
                 <p th:utext="'<strong>Valoración:</strong>' + ${peli.valoracion}"></p>
                 <p th:utext="'<strong>Url:</strong>' + ${peli.url}"></p>
             </div>

@@ -116,14 +116,14 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @RequestMapping("/adminUsers/adminRegisterUsers" )
-    public ModelAndView register(@RequestParam String username, @RequestParam String email,
+    @RequestMapping("adminRegisterUsers" )
+    public RedirectView register(@RequestParam String username, @RequestParam String email,
                                  @RequestParam String emailConf, @RequestParam String password,
                                  @RequestParam String passwordConf) {
 
         GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
         userRepository.save(new Usuario(username, password, email, Arrays.asList(userRoles)));
 
-        return new ModelAndView( "redirect:/adminUsers" ).addObject("users",userRepository.findAll(new PageRequest(0,5)));
+        return new RedirectView( "adminUsers" );
     }
 }

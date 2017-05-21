@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,13 +34,13 @@ public class IndexController {
     }
 
     @RequestMapping("/registerUsers" )
-    public ModelAndView register(@RequestParam String username, @RequestParam String email,
+    public RedirectView register(@RequestParam String username, @RequestParam String email,
                                  @RequestParam String emailConf, @RequestParam String password,
                                  @RequestParam String passwordConf) {
 
         GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
         userRepository.save(new Usuario(username, password, email, Arrays.asList(userRoles)));
 
-        return new ModelAndView( "redirect:/index" );
+        return new RedirectView( "/" );
     }
 }

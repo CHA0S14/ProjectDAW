@@ -1,6 +1,7 @@
 package com.DAW.Project.Controllers;
 
 import com.DAW.Project.Entidades.Pelicula;
+import com.DAW.Project.Entidades.Usuario;
 import com.DAW.Project.Repositories.PelisRepository;
 import com.DAW.Project.Repositories.UserRepository;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,5 +113,17 @@ public class AdminController {
             e.printStackTrace();
         }
         return new RedirectView("adminPelis");
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("/adminUsers/adminRegisterUsers" )
+    public ModelAndView register(@RequestParam String username, @RequestParam String email,
+                                 @RequestParam String emailConf, @RequestParam String password,
+                                 @RequestParam String passwordConf) {
+
+        GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
+        userRepository.save(new Usuario(username, password, email, Arrays.asList(userRoles)));
+
+        return new ModelAndView( "redirect:/adminUsers" ).addObject("users",userRepository.findAll(new PageRequest(0,5)));
     }
 }

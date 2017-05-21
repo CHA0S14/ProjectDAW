@@ -35,32 +35,34 @@
 <div class="container" id="login">
     <div class="wrapper">
         <form class="form-signin"  th:action="@{/}"  method="post">
-            <div class="alert alert-danger" th:if="${param.error}">
-                <p>Invalid credentials</p>
-            </div>
-            <div class="alert alert-info" th:if="${param.logout}">
-                <p>Logged out</p>
-            </div>
-            <h2>Please login</h2>
+            <h2>Login</h2>
             <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />
             <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
             <br/>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-            <button id="changeRegister" type="button" class="btn btn-link">Not registered?</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
+            <button id="changeRegister" type="button" class="btn btn-link">¿No está registrado?</button>
+            <div class="alert alert-danger" th:if="${param.error}">
+                <p>Invalid credentials</p>
+            </div>
+            <!--<div class="alert alert-info" th:if="${param.logout}">
+                <p>Logged out</p>
+            </div>-->
         </form>
     </div>
 </div>
 
 <div class="container" id="register">
     <div class="wrapper">
-        <form class="form-signin" action="register">
-            <h2 class="form-signin-heading">Please register</h2>
-            <input type="text" class="form-control" name="username" placeholder="username" required="" autofocus=""/>
-            <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
-            <input type="password" class="form-control" name="passwordConf" placeholder="Confirm Password" required=""/>
-            <input type="text" class="form-control" name="email" placeholder="Email Address" required=""/>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-            <button id="changeLogin" type="button" class="btn btn-link">Allready registered?</button>
+        <form class="form-signin" th:action="@{/registerUsers}" method="post">
+            <h2 class="form-signin-heading">Registro</h2>
+            <input type="text" class="form-control" name="username" placeholder="Nombre de usuario" required="" autofocus="" autocomplete="Off" />
+            <input type="text" class="form-control" name="email" placeholder="Email" required="" autocomplete="Off" />
+            <input type="text" class="form-control" name="emailConf" placeholder="Confirmar email" required="" autocomplete="Off" />
+            <input type="password" class="form-control" name="password" placeholder="Contraseña" required=""/>
+            <input type="password" class="form-control" name="passwordConf" placeholder="Confirmar contraseña" required=""/>
+            <br/>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Registrar</button>
+            <button id="changeLogin" type="button" class="btn btn-link">¿Ya está registrado?</button>
         </form>
     </div>
 </div>

@@ -1,4 +1,4 @@
-<section xmlns:th="http://www.thymeleaf.org" th:each="peli : ${pelis}" class="row well">
+<section xmlns:th="http://www.thymeleaf.org" th:each="peli : ${pelis}" class="row well"  th:id="'pelicula' + ${peli.id}">
     <div class="col-md-2">
         <img class="img-responsive center-block" th:src="${peli.portada}" th:alt="${peli.nombre}">
     </div>
@@ -9,8 +9,7 @@
                 <p th:utext="'<strong>Año:</strong>' + ${peli.anio}"></p>
                 <p th:if="${!peli.director.equals('')}" th:utext="'<strong>Director:</strong>' + ${peli.director}"></p>
                 <p th:if="${peli.director.equals('')}"><strong>Director:</strong> -</p>
-                <p th:if="${!peli.reparto.equals('')}" th:utext="'<strong>Reparto de actores:</strong>' + ${peli.reparto}"></p>
-                <p th:if="${peli.reparto.equals('')}"><strong>Reparto de actores:</strong> -</p>
+                <p th:utext="'<strong>Reparto de actores:</strong>' + ${peli.reparto}"></p>
                 <p th:utext="'<strong>Valoración:</strong>' + ${peli.valoracion}"></p>
                 <p th:utext="'<strong>Url:</strong>' + ${peli.url}"></p>
             </div>
@@ -22,7 +21,10 @@
     <div class="col-md-3">
         <div class="btn-group pull-right">
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-change-movie">Modificar</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-movie">Eliminar</button>
+            <button type="button" class="btn btn-danger btnEliminar" data-toggle="modal" data-target="#modal-delete-movie" th:id="${peli.id}">Eliminar</button>
         </div>
     </div>
+    <form action="/eliminaPeli" method="post" th:id="'eliminarForm' + ${peli.id}">
+        <input type="hidden" th:value="${peli.id}" name="id">
+    </form>
 </section>

@@ -41,6 +41,6 @@ public class IndexController {
         GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
         userRepository.save(new Usuario(username, password, email, Arrays.asList(userRoles)));
 
-        return new RedirectView( "/" );
+        return new RedirectView( "/?registered" );
     }
 }

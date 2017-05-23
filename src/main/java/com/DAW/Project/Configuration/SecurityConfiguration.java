@@ -21,6 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests().antMatchers("/").permitAll();
+        http.authorizeRequests().antMatchers("/registerUsers").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.formLogin().loginPage("/").usernameParameter("username")
                 .passwordParameter("password").defaultSuccessUrl("/peliculas")

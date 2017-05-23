@@ -36,10 +36,13 @@
     <div class="wrapper">
         <form class="form-signin"  th:action="@{/}"  method="post">
             <div class="alert alert-danger" th:if="${param.error}">
-                <p>Invalid credentials</p>
+                <p>Credenciales invalidas</p>
             </div>
             <div class="alert alert-info" th:if="${param.logout}">
-                <p>Logged out</p>
+                <p>Desconectado</p>
+            </div>
+            <div class="alert alert-info" th:if="${param.registered}">
+                <p>Registro correcto</p>
             </div>
             <h2>Please login</h2>
             <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus="" />

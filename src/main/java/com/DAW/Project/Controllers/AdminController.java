@@ -84,6 +84,40 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @RequestMapping("/addPeli" )
     public RedirectView añadirPelicula(@RequestParam String nombre, @RequestParam String url, @RequestParam String anio, @RequestParam String director, @RequestParam String reparto, @RequestParam String portada, @RequestParam String valoracion, @RequestParam String descripcion) {
+        peliRepository.save(rellenarPelicula(nombre, url, anio, director, reparto, portada, valoracion, descripcion));
+        return new RedirectView("adminPelis");
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("/modificarPelicula" )
+    public RedirectView modPelicula(@RequestParam long id, @RequestParam String nombre, @RequestParam String url, @RequestParam String anio, @RequestParam String director, @RequestParam String reparto, @RequestParam String portada, @RequestParam String valoracion, @RequestParam String descripcion) {
+        Pelicula peli = rellenarPelicula(nombre, url, anio, director, reparto, portada, valoracion, descripcion);
+        peli.setId(id);
+        peliRepository.save(peli);
+
+        return new RedirectView("adminPelis");
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("eliminaPeli" )
+    public RedirectView eliminarPeli(@RequestParam long id){
+        peliRepository.delete(id);
+        return new RedirectView("adminPelis");
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("adminRegisterUsers" )
+    public RedirectView register(@RequestParam String username, @RequestParam String email,
+                                 @RequestParam String emailConf, @RequestParam String password,
+                                 @RequestParam String passwordConf) {
+
+        GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
+        userRepository.save(new Usuario(username, password, email, Arrays.asList(userRoles)));
+
+        return new RedirectView( "adminUsers" );
+    }
+
+    private Pelicula rellenarPelicula(String nombre, String url, String anio, String director, String reparto, String portada, String valoracion, String descripcion){
         try {
             if (anio.equals("")||descripcion.equals("")||portada.equals("")||valoracion.equals("")) {
                 URL enlace = new URL(this.url + URLEncoder.encode(nombre, "UTF-8"));
@@ -107,30 +141,11 @@ public class AdminController {
                     valoracion = pelicula.get("vote_average").asText();
             }
 
-            peliRepository.save(new Pelicula(nombre, url, descripcion, Integer.parseInt(anio), director, reparto, portada, Double.parseDouble(valoracion)));
+            return new Pelicula(nombre, url, descripcion, Integer.parseInt(anio), director, reparto, portada, Double.parseDouble(valoracion));
 
         }catch(Exception e){
             e.printStackTrace();
         }
-        return new RedirectView("adminPelis");
-    }
-
-    @Secured("ROLE_ADMIN")
-    @RequestMapping("eliminaPeli" )
-    public RedirectView eliminarPeli(@RequestParam long id){
-        peliRepository.delete(id);
-        return new RedirectView("adminPelis");
-    }
-
-    @Secured("ROLE_ADMIN")
-    @RequestMapping("adminRegisterUsers" )
-    public RedirectView register(@RequestParam String username, @RequestParam String email,
-                                 @RequestParam String emailConf, @RequestParam String password,
-                                 @RequestParam String passwordConf) {
-
-        GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
-        userRepository.save(new Usuario(username, password, email, Arrays.asList(userRoles)));
-
-        return new RedirectView( "adminUsers" );
+        return new Pelicula(nombre,url);
     }
 }

@@ -4,16 +4,13 @@ import com.DAW.Project.Entidades.Pelicula;
 import com.DAW.Project.Entidades.Usuario;
 import com.DAW.Project.Repositories.PelisRepository;
 import com.DAW.Project.Repositories.UserRepository;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.DAW.Project.RestClientObjects.Busqueda;
+import com.DAW.Project.RestClientObjects.PeliRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,12 +18,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by ismael on 14/05/2017.
@@ -120,32 +114,25 @@ public class AdminController {
     private Pelicula rellenarPelicula(String nombre, String url, String anio, String director, String reparto, String portada, String valoracion, String descripcion){
         try {
             if (anio.equals("")||descripcion.equals("")||portada.equals("")||valoracion.equals("")) {
-                URL enlace = new URL(this.url + URLEncoder.encode(nombre, "UTF-8"));
-                HttpURLConnection conn = (HttpURLConnection) enlace.openConnection();
-                conn.connect();
 
+                RestTemplate restTemplate = new RestTemplate();
+                Busqueda busqueda = restTemplate.getForObject( this.url + URLEncoder.encode(nombre, "UTF-8"),Busqueda.class);
 
-                ObjectMapper objectMapper = new ObjectMapper();
-
-                JsonNode rootNode = objectMapper.readTree(conn.getInputStream());
-                JsonNode resultsNode = rootNode.path("results");
-
-                JsonNode pelicula = resultsNode.get(0);
-                if (anio.equals(""))
-                    anio = pelicula.get("release_date").asText().substring(0, 4);
+                PeliRest peli = busqueda.getResults()[0];
+                if (anio.equals("") || anio.equals("0"))
+                    anio = peli.getRelease_date().substring(0, 4);
                 if (descripcion.equals(""))
-                    descripcion = pelicula.get("overview").asText();
+                    descripcion = peli.getOverview();
                 if (portada.equals(""))
-                    portada = "https://image.tmdb.org/t/p/w500" + pelicula.get("poster_path").asText();
-                if (valoracion.equals(""))
-                    valoracion = pelicula.get("vote_average").asText();
+                    portada = "https://image.tmdb.org/t/p/w500" + peli.getPoster_path();
+                if (valoracion.equals("") || valoracion.equals("0.0"))
+                    valoracion = peli.getVote_average() + "";
             }
 
             return new Pelicula(nombre, url, descripcion, Integer.parseInt(anio), director, reparto, portada, Double.parseDouble(valoracion));
 
-        }catch(Exception e){
-            e.printStackTrace();
+        }catch(UnsupportedEncodingException | ArrayIndexOutOfBoundsException e){
         }
-        return new Pelicula(nombre,url);
+        return new Pelicula(nombre,url, descripcion, anio.equals("") ? 0 : Integer.parseInt(anio), director, reparto, portada, valoracion.equals("") ? 0 : Integer.parseInt(valoracion));
     }
 }

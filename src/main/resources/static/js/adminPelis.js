@@ -16,7 +16,7 @@ $(document).on('click',".btnModificar",function (e) {
     var reparto = $("#reparto" + idPelicula).text().split(":")[1];
     $("#repartoForm").val( reparto == " -" ? "" : reparto);
     var url =  $("#portada" + idPelicula).attr('src').split(":");
-    $("#portadaForm").val( url[0]+":"+url[1]);
+    $("#portadaForm").val( url[0] + (url[1] != undefined ? ":"+url[1] : ""));
     $("#valoracionForm").val( $("#valoracion" + idPelicula).text().split(":")[1]);
     $("#descripcionForm").val( $("#descripcion" + idPelicula).text().split(":")[1]);
 });

@@ -102,13 +102,8 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @RequestMapping("eliminaUser" )
     public RedirectView eliminarUser(@RequestParam long id){
-        if (userRepository.findOne(id).getUsuario() == "root") {
-            userRepository.delete(id);
-            return new RedirectView("adminUsers");
-        } else {
-
-        }
-
+        userRepository.delete(id);
+        return new RedirectView("adminUsers");
     }
 
     @Secured("ROLE_ADMIN")

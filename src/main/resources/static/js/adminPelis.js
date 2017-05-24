@@ -1,4 +1,11 @@
-
+$(document).ready(function () {
+   $("#errorUrlForm").hide();
+   $("#errorPortadaForm").hide();
+   $("#errorUrl-Port").hide();
+   $("#errorUrl-Cont").hide();
+   $("#errorName").hide();
+   $("#errorNameForm").hide();
+});
 var idPelicula = "";
 $(document).on('click',".btnEliminar",function (e) {
     idPelicula = e.target.id;
@@ -23,6 +30,67 @@ $(document).on('click',".btnModificar",function (e) {
 $(document).on('click',"#eliminar",function () {
     $("#eliminarForm" + idPelicula).submit();
 });
-$(document).on('click',"#modificar",function () {
-    console.log(arr[1]);
+var youtube=/^https:\/\/(www.)?youtube.(com|es)\/embed\/\w+/;
+var urlSimple = /^(http|https):\/\/\w+/;
+$(document).on('click',"#createFormSubmit",function (e) {
+    e.preventDefault();
+    var vale = true;
+    if($("#name").val()==""){
+        $("#errorName").show();
+        $("#divName").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorName").hide();
+        $("#divName").removeClass("has-error");
+    }
+    if(!$("#url-cont").val().match(youtube)){
+        $("#errorUrl-Cont").show();
+        $("#divUrl-Cont").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorUrl-Cont").hide();
+        $("#divUrl-Cont").removeClass("has-error");
+    }
+    if($("#url-port").val() != "" && !$("#url-port").val().match(urlSimple)){
+        $("#errorUrl-Port").show();
+        $("#divUrl-Port").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorUrl-Port").hide();
+        $("#divUrl-Port").removeClass("has-error");
+    }
+    if(vale){
+        $("#createForm").submit();
+    }
+});
+$(document).on('click',"#modificar",function (e) {
+    e.preventDefault();
+    var vale = true;
+    if($("#nameForm").val()==""){
+        $("#errorNameForm").show();
+        $("#divNameForm").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorNameForm").hide();
+        $("#divNameForm").removeClass("has-error");
+    }
+    if(!$("#urlForm").val().match(youtube)){
+        $("#errorUrlForm").show();
+        $("#divUrlForm").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorUrlForm").hide();
+        $("#divUrlForm").removeClass("has-error");
+    }
+    if($("#portadaForm").val() != "" && !$("#portadaForm").val().match(urlSimple)){
+        $("#errorPortadaForm").show();
+        $("#divPortadaForm").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorPortadaForm").hide();
+        $("#divPortadaForm").removeClass("has-error");
+    }
+    if (vale){
+        $("#modForm").submit();
+    }
 });

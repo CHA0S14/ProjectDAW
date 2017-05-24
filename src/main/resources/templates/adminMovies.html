@@ -129,15 +129,17 @@
                 </button>
                 <h3 class="modal-title">Alta de peliculas</h3>
             </div>
-            <form action="addPeli" method="post">
+            <form action="addPeli" method="post" id="createForm">
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="form-group has-feedback" id="divName">
                         <label for="name">*Nombre de la película:</label>
                         <input type="text" class="form-control" id="name" name="nombre" required="" autofocus="">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorName"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-feedback" id="divUrl-Cont">
                         <label for="url-cont">*URL del contenido:</label>
                         <input type="text" class="form-control" id="url-cont" name="url" required="">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrl-Cont"></span>
                     </div>
                     <div class="form-group">
                         <label for="year">Año:</label>
@@ -151,9 +153,10 @@
                         <label for="reparto">Reparto de actores:</label>
                         <input type="text" class="form-control" id="reparto" name="reparto">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-feedback" id="divUrl-Port">
                         <label for="url-port">URL de la portada:</label>
                         <input type="text" class="form-control" id="url-port" name="portada">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrl-Port"></span>
                     </div>
                     <div class="form-group">
                         <label for="val">Valoración:</label>
@@ -166,7 +169,7 @@
                     <p><small>(*) Apartados obligatorios.</small></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                    <button type="submit" class="btn btn-primary" id="createFormSubmit">Aceptar</button>
                 </div>
             </form>
         </div>
@@ -182,16 +185,18 @@
                 </button>
                 <h3 class="modal-title">Información de la película</h3>
             </div>
-            <form action="modificarPelicula" method="post">
+            <form action="modificarPelicula" method="post" id="modForm">
                 <input type="hidden" name="id" id="idForm">
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="form-group has-feedback" id="divNameForm">
                         <label for="nameForm">Nombre de la película:</label>
                         <input type="text" class="form-control" name="nombre" id="nameForm" required="">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorNameForm"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-feedback" id="divUrlForm">
                         <label for="urlForm">URL del contenido:</label>
                         <input type="text" class="form-control" name="url" id="urlForm" required="">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrlForm"></span>
                     </div>
                     <div class="form-group">
                         <label for="anioForm">Año:</label>
@@ -205,9 +210,10 @@
                         <label for="repartoForm">Reparto de actores:</label>
                         <input type="text" class="form-control" name="reparto" id="repartoForm">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-feedback" id="divPortadaForm">
                         <label for="portadaForm">URL de la portada:</label>
                         <input type="text" class="form-control" name="portada" id="portadaForm">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorPortadaForm"></span>
                     </div>
                     <div class="form-group">
                         <label for="valoracionForm">Valoración:</label>

@@ -132,44 +132,36 @@
             <form action="addPeli" method="post" id="createForm">
                 <div class="modal-body">
                     <div class="form-group has-feedback" id="divName">
-                        <label for="name">*Nombre de la película:</label>
-                        <input type="text" class="form-control" id="name" name="nombre" required="" autofocus="">
+                        <input type="text" class="form-control" id="name" name="nombre" placeholder="*Nombre de la película" required="" autofocus="">
                         <span class="glyphicon glyphicon-remove form-control-feedback" id="errorName"></span>
                     </div>
                     <div class="form-group has-feedback" id="divUrl-Cont">
-                        <label for="url-cont">*URL del contenido:</label>
-                        <input type="text" class="form-control" id="url-cont" name="url" required="">
+                        <input type="text" class="form-control" id="url-cont" name="url" placeholder="*URL del contenido" required="">
                         <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrl-Cont"></span>
                     </div>
                     <div class="form-group">
-                        <label for="year">Año:</label>
-                        <input type="text" class="form-control" id="year" name="anio">
+                        <input type="text" class="form-control" id="year" name="anio" placeholder="Año">
                     </div>
                     <div class="form-group">
-                        <label for="addr">Director:</label>
-                        <input type="text" class="form-control" id="addr" name="director">
+                        <input type="text" class="form-control" id="addr" name="director" placeholder="Director">
                     </div>
                     <div class="form-group">
-                        <label for="reparto">Reparto de actores:</label>
-                        <input type="text" class="form-control" id="reparto" name="reparto">
+                        <input type="text" class="form-control" id="reparto" name="reparto" placeholder="Reparto de actores">
                     </div>
                     <div class="form-group has-feedback" id="divUrl-Port">
-                        <label for="url-port">URL de la portada:</label>
-                        <input type="text" class="form-control" id="url-port" name="portada">
+                        <input type="text" class="form-control" id="url-port" name="portada" placeholder="URL de la portada">
                         <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrl-Port"></span>
                     </div>
                     <div class="form-group">
-                        <label for="val">Valoración:</label>
-                        <input type="text" class="form-control" id="val" name="valoracion">
+                        <input type="text" class="form-control" id="val" name="valoracion" placeholder="Valoración">
                     </div>
                     <div class="form-group">
-                        <label for="desc">Descripción:</label>
-                        <textarea class="form-control" rows="10" id="desc" name="descripcion"></textarea>
+                        <textarea class="form-control" rows="10" id="desc" name="descripcion" placeholder="Descripción"></textarea>
                     </div>
                     <p><small>(*) Apartados obligatorios.</small></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="createFormSubmit">Aceptar</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="createFormSubmit">Aceptar</button>
                 </div>
             </form>
         </div>
@@ -225,7 +217,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="modificar">Aceptar</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="modificar">Aceptar</button>
                 </div>
             </form>
         </div>

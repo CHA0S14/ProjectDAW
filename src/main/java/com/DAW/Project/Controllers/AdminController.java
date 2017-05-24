@@ -102,6 +102,7 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @RequestMapping("eliminaUser" )
     public RedirectView eliminarUser(@RequestParam long id){
+
         userRepository.delete(id);
         return new RedirectView("adminUsers");
     }

@@ -22,6 +22,7 @@
         <script th:src="@{/js/listaAdminUsers.js}"></script>
         <script th:src="@{/js/busquedaAdminUsers.js}"></script>
         <script th:src="@{/js/logOut.js}"></script>
+        <script th:src="@{/js/adminUsers.js}"></script>
         <!-- stilos -->
         <link rel="stylesheet" type="text/css" href="../css/base.css">
     </head>
@@ -94,9 +95,12 @@
                 <div class="col-md-3">
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-change-user">Modificar</button>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-user">Eliminar</button>
+                        <button type="button" class="btn btn-danger btnEliminar" data-toggle="modal" data-target="#modal-delete-user" th:id="${user.id}"">Eliminar</button>
                     </div>
                 </div>
+                <form action="/eliminaUser" method="post" th:id="'eliminarForm' + ${user.id}">
+                    <input type="hidden" th:value="${user.id}" name="id">
+                </form>
             </section>
         </div>
         <div class="container" id="loadmoreajaxloader"></div>
@@ -187,7 +191,6 @@
                             <label for="re-pwd2">*Repita la nueva contraseña:</label>
                             <input type="password" class="form-control" id="re-pwd2">
                         </div>
-                        <p><small>(*) Apartados obligatorios.</small></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
@@ -210,7 +213,7 @@
                         <p>¿Está seguro de querer dar de baja a este usuario?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        <button type="button" class="btn btn-primary" id="eliminar">Aceptar</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
             crossorigin="anonymous"></script>
     <script th:src="@{/js/login.js}"></script>
     <!-- css -->
-    <link rel="stylesheet" type="text/css" href="../static/css/base.css" th:href="@{/css/base.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/fbase.css" th:href="@{/css/base.css}">
     <link rel="stylesheet" type="text/css" href="../static/css/login.css" th:href="@{/css/login.css}">
 </head>
 <body>
@@ -48,7 +48,7 @@
                 <p>Registro correcto</p>
             </div>
             <h2>Bienvenido</h2>
-            <input type="text" class="form-control" name="username" placeholder="Nombre de usuario" required="" autofocus="" />
+            <input type="text" class="form-control" name="username" placeholder="Nombre de usuario" required="" autofocus="" autocomplete="Off" />
             <input type="password" class="form-control" name="password" placeholder="Contraseña" required=""/>
             <br/>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Concetar</button>

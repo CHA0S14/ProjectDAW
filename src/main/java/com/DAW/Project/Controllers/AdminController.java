@@ -60,17 +60,6 @@ public class AdminController {
         return new ModelAndView( "adminUsers" ).addObject("users",userRepository.findAll(new PageRequest(0,5)));
     }
     @Secured("ROLE_ADMIN")
-    @RequestMapping("/adminUsers/adminRegisterUsers" )
-    public ModelAndView register(@RequestParam String username, @RequestParam String email,
-                                 @RequestParam String emailConf, @RequestParam String password,
-                                 @RequestParam String passwordConf) {
-
-        GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
-        userRepository.save(new Usuario(username, password, email, Arrays.asList(userRoles)));
-
-        return new ModelAndView( "redirect:/adminUsers" ).addObject("users",userRepository.findAll(new PageRequest(0,5)));
-    }
-    @Secured("ROLE_ADMIN")
     @RequestMapping("/adminListUsers" )
     public ModelAndView usuariosList(@RequestParam int pagina) {
         return new ModelAndView( "adminUserList" ).addObject("users",userRepository.findAll(new PageRequest(pagina,5)));
@@ -108,6 +97,18 @@ public class AdminController {
     public RedirectView eliminarPeli(@RequestParam long id){
         peliRepository.delete(id);
         return new RedirectView("adminPelis");
+    }
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("eliminaUser" )
+    public RedirectView eliminarUser(@RequestParam long id){
+        if (userRepository.findOne(id).getUsuario() == "root") {
+            userRepository.delete(id);
+            return new RedirectView("adminUsers");
+        } else {
+
+        }
+
     }
 
     @Secured("ROLE_ADMIN")

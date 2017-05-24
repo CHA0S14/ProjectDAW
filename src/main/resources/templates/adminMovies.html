@@ -19,6 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+    <script th:src="@{/js/adminPelis.js}"></script>
     <script th:src="@{/js/listaAdminPelis.js}"></script>
     <script th:src="@{/js/busquedaAdminPelis.js}"></script>
     <script th:src="@{/js/logOut.js}"></script>
@@ -51,7 +52,7 @@
                         <li role="separator" class="divider"></li>
                         <li>
                             <a href="" class="logOut">
-                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Log Out
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Desconectar
                             </a>
                         </li>
                     </ul>
@@ -85,30 +86,34 @@
 <div class="container" id="listaPelis">
     <section th:each="peli : ${pelis}" class="row well">
         <div class="col-md-2">
-            <img class="img-responsive center-block" th:src="${peli.portada}" th:alt="${peli.nombre}">
+            <img th:id="'portada'+${peli.id}" class="img-responsive center-block" th:src="${peli.portada}" th:alt="${peli.nombre}">
         </div>
         <div class="col-md-7">
-            <h2 th:text="${peli.nombre}"></h2>
+            <h2 th:id="'nombre'+${peli.id}" th:text="${peli.nombre}"></h2>
             <div class="row">
                 <div class="col-md-6">
-                    <p th:utext="'<strong>Año:</strong>' + ${peli.anio}"></p>
-                    <p th:if="${!peli.director.equals('')}" th:utext="'<strong>Director:</strong>' + ${peli.director}"></p>
-                    <p th:if="${peli.director.equals('')}"><strong>Director:</strong> -</p>
-                    <p th:utext="'<strong>Reparto de actores:</strong>' + ${peli.reparto}"></p>
-                    <p th:utext="'<strong>Valoración:</strong>' + ${peli.valoracion}"></p>
-                    <p th:utext="'<strong>Url:</strong>' + ${peli.url}"></p>
+                    <p th:id="'anio'+${peli.id}" th:utext="'<strong>Año:</strong>' + ${peli.anio}"></p>
+                    <p th:id="'director'+${peli.id}" th:if="${!peli.director.equals('')}" th:utext="'<strong>Director:</strong>' + ${peli.director}"></p>
+                    <p th:id="'director'+${peli.id}" th:if="${peli.director.equals('')}"><strong>Director:</strong> -</p>
+                    <p th:id="'reparto'+${peli.id}" th:if="${!peli.reparto.equals('')}" th:utext="'<strong>Reparto de actores:</strong>' + ${peli.reparto}"></p>
+                    <p th:id="'reparto'+${peli.id}" th:if="${peli.reparto.equals('')}"><strong>Reparto de actores:</strong> -</p>
+                    <p th:id="'valoracion'+${peli.id}" th:utext="'<strong>Valoración:</strong>' + ${peli.valoracion}"></p>
+                    <p th:id="'url'+${peli.id}" th:utext="'<strong>Url:</strong>' + ${peli.url}"></p>
                 </div>
                 <div class="col-md-6">
-                    <p th:utext="'<strong>Descripción:</strong>' + ${peli.descripcion}"></p>
+                    <p th:id="'descripcion'+${peli.id}" th:utext="'<strong>Descripción:</strong>' + ${peli.descripcion}"></p>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="btn-group pull-right">
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-change-movie">Modificar</button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-movie">Eliminar</button>
+                <button type="button" class="btn btn-warning btnModificar" data-toggle="modal" data-target="#modal-change-movie" th:id="${peli.id}">Modificar</button>
+                <button type="button" class="btn btn-danger btnEliminar" data-toggle="modal" data-target="#modal-delete-movie" th:id="${peli.id}">Eliminar</button>
             </div>
         </div>
+        <form action="/eliminaPeli" method="post" th:id="'eliminarForm' + ${peli.id}">
+            <input type="hidden" th:value="${peli.id}" name="id">
+        </form>
     </section>
 </div>
 <div class="container" id="loadmoreajaxloader"></div>
@@ -124,44 +129,39 @@
                 </button>
                 <h3 class="modal-title">Alta de peliculas</h3>
             </div>
-            <form action="addPeli" method="post">
+            <form action="addPeli" method="post" id="createForm">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name">*Nombre de la película:</label>
-                        <input type="text" class="form-control" id="name" name="nombre" required="" autofocus="">
+                    <div class="form-group has-feedback" id="divName">
+                        <input type="text" class="form-control" id="name" name="nombre" placeholder="*Nombre de la película" required="" autofocus="">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorName"></span>
+                    </div>
+                    <div class="form-group has-feedback" id="divUrl-Cont">
+                        <input type="text" class="form-control" id="url-cont" name="url" placeholder="*URL del contenido" required="">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrl-Cont"></span>
                     </div>
                     <div class="form-group">
-                        <label for="url-cont">*URL del contenido:</label>
-                        <input type="text" class="form-control" id="url-cont" name="url" required="">
+                        <input type="text" class="form-control" id="year" name="anio" placeholder="Año">
                     </div>
                     <div class="form-group">
-                        <label for="year">Año:</label>
-                        <input type="text" class="form-control" id="year" name="anio">
+                        <input type="text" class="form-control" id="addr" name="director" placeholder="Director">
                     </div>
                     <div class="form-group">
-                        <label for="addr">Director:</label>
-                        <input type="text" class="form-control" id="addr" name="director">
+                        <input type="text" class="form-control" id="reparto" name="reparto" placeholder="Reparto de actores">
+                    </div>
+                    <div class="form-group has-feedback" id="divUrl-Port">
+                        <input type="text" class="form-control" id="url-port" name="portada" placeholder="URL de la portada">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrl-Port"></span>
                     </div>
                     <div class="form-group">
-                        <label for="reparto">Reparto de actores:</label>
-                        <input type="text" class="form-control" id="reparto" name="reparto">
+                        <input type="text" class="form-control" id="val" name="valoracion" placeholder="Valoración">
                     </div>
                     <div class="form-group">
-                        <label for="url-port">URL de la portada:</label>
-                        <input type="text" class="form-control" id="url-port" name="portada">
-                    </div>
-                    <div class="form-group">
-                        <label for="val">Valoración:</label>
-                        <input type="text" class="form-control" id="val" name="valoracion">
-                    </div>
-                    <div class="form-group">
-                        <label for="desc">Descripción:</label>
-                        <textarea class="form-control" rows="10" id="desc" name="descripcion"></textarea>
+                        <textarea class="form-control" rows="10" id="desc" name="descripcion" placeholder="Descripción"></textarea>
                     </div>
                     <p><small>(*) Apartados obligatorios.</small></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Aceptar</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="createFormSubmit">Aceptar</button>
                 </div>
             </form>
         </div>
@@ -177,44 +177,49 @@
                 </button>
                 <h3 class="modal-title">Información de la película</h3>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="name2">Nombre de la película:</label>
-                    <input type="text" class="form-control" id="name2">
+            <form action="modificarPelicula" method="post" id="modForm">
+                <input type="hidden" name="id" id="idForm">
+                <div class="modal-body">
+                    <div class="form-group has-feedback" id="divNameForm">
+                        <label for="nameForm">Nombre de la película:</label>
+                        <input type="text" class="form-control" name="nombre" id="nameForm" required="">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorNameForm"></span>
+                    </div>
+                    <div class="form-group has-feedback" id="divUrlForm">
+                        <label for="urlForm">URL del contenido:</label>
+                        <input type="text" class="form-control" name="url" id="urlForm" required="">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrlForm"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="anioForm">Año:</label>
+                        <input type="text" class="form-control" name="anio" id="anioForm">
+                    </div>
+                    <div class="form-group">
+                        <label for="directorForm">Director:</label>
+                        <input type="text" class="form-control" name="director" id="directorForm">
+                    </div>
+                    <div class="form-group">
+                        <label for="repartoForm">Reparto de actores:</label>
+                        <input type="text" class="form-control" name="reparto" id="repartoForm">
+                    </div>
+                    <div class="form-group has-feedback" id="divPortadaForm">
+                        <label for="portadaForm">URL de la portada:</label>
+                        <input type="text" class="form-control" name="portada" id="portadaForm">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorPortadaForm"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="valoracionForm">Valoración:</label>
+                        <input type="text" class="form-control" name="valoracion" id="valoracionForm">
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcionForm">Descripción:</label>
+                        <textarea class="form-control" rows="10" name="descripcion" id="descripcionForm"></textarea>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="url-cont2">URL del contenido:</label>
-                    <input type="text" class="form-control" id="url-cont2">
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-block" id="modificar">Aceptar</button>
                 </div>
-                <div class="form-group">
-                    <label for="year2">Año:</label>
-                    <input type="text" class="form-control" id="year2">
-                </div>
-                <div class="form-group">
-                    <label for="addr2">Director:</label>
-                    <input type="text" class="form-control" id="addr2">
-                </div>
-                <div class="form-group">
-                    <label for="reparto2">Reparto de actores:</label>
-                    <input type="text" class="form-control" id="reparto2">
-                </div>
-                <div class="form-group">
-                    <label for="url-port2">URL de la portada:</label>
-                    <input type="text" class="form-control" id="url-port2">
-                </div>
-                <div class="form-group">
-                    <label for="val2">Valoración:</label>
-                    <input type="text" class="form-control" id="val2">
-                </div>
-                <div class="form-group">
-                    <label for="desc2">Descripción:</label>
-                    <textarea class="form-control" rows="10" id="desc2"></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -232,7 +237,7 @@
                 <p>¿Está seguro de querer dar de baja esta película?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                <button type="button" class="btn btn-primary" id="eliminar">Aceptar</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
             </div>
         </div>

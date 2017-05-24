@@ -24,6 +24,11 @@ public class Pelicula {
     public Pelicula() {
     }
 
+    public Pelicula(String nombre, String url) {
+        this.nombre = nombre;
+        this.url = url;
+    }
+
     public Pelicula(String nombre, String url, String descripcion, int anio, String director, String reparto, String portada, double valoracion) {
         this.nombre = nombre;
         this.url = url;
@@ -34,6 +39,19 @@ public class Pelicula {
         this.portada = portada;
         this.valoracion = valoracion;
     }
+
+    public Pelicula(Long id, String nombre, String url, String descripcion, int anio, String director, String reparto, String portada, double valoracion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.url = url;
+        this.descripcion = descripcion;
+        this.anio = anio;
+        this.director = director;
+        this.reparto = reparto;
+        this.portada = portada;
+        this.valoracion = valoracion;
+    }
+
 
     public long getId() {
         return id;

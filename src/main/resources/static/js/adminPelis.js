@@ -1,17 +1,14 @@
 $(document).ready(function () {
-   $("#errorUrlForm").hide();
-   $("#errorPortadaForm").hide();
-   $("#errorUrl-Port").hide();
-   $("#errorUrl-Cont").hide();
-   $("#errorName").hide();
-   $("#errorNameForm").hide();
+   reseteaFormularios();
 });
 var idPelicula = "";
 $(document).on('click',".btnEliminar",function (e) {
     idPelicula = e.target.id;
+    reseteaFormularios();
 });
 $(document).on('click',".btnModificar",function (e) {
     idPelicula = e.target.id;
+    reseteaFormularios();
 
     $("#idForm").val(idPelicula);
     $("#nameForm").val( $("#nombre" + idPelicula).text());
@@ -43,6 +40,14 @@ $(document).on('click',"#createFormSubmit",function (e) {
         $("#errorName").hide();
         $("#divName").removeClass("has-error");
     }
+    if($("#anio").val() != "" && !$.isNumeric($("#anio").val())){
+        $("#errorAnio").show();
+        $("#divAnio").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorAnio").hide();
+        $("#divAnio").removeClass("has-error");
+    }
     if(!$("#url-cont").val().match(youtube)){
         $("#errorUrl-Cont").show();
         $("#divUrl-Cont").addClass("has-error");
@@ -59,6 +64,14 @@ $(document).on('click',"#createFormSubmit",function (e) {
         $("#errorUrl-Port").hide();
         $("#divUrl-Port").removeClass("has-error");
     }
+    if($("#valoracion").val() != "" && !$.isNumeric($("#valoracion").val())){
+        $("#errorValoracion").show();
+        $("#divValoracion").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorValoracion").hide();
+        $("#divValoracion").removeClass("has-error");
+    }
     if(vale){
         $("#createForm").submit();
     }
@@ -73,6 +86,14 @@ $(document).on('click',"#modificar",function (e) {
     }else{
         $("#errorNameForm").hide();
         $("#divNameForm").removeClass("has-error");
+    }
+    if($("#anioForm").val() != "" && !$.isNumeric($("#anioForm").val())){
+        $("#errorAnioForm").show();
+        $("#divAnioForm").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorAnioForm").hide();
+        $("#divAnioForm").removeClass("has-error");
     }
     if(!$("#urlForm").val().match(youtube)){
         $("#errorUrlForm").show();
@@ -90,7 +111,39 @@ $(document).on('click',"#modificar",function (e) {
         $("#errorPortadaForm").hide();
         $("#divPortadaForm").removeClass("has-error");
     }
+    if($("#valoracionForm").val() != "" && !$.isNumeric($("#valoracionForm").val())){
+        $("#errorValoracionForm").show();
+        $("#divValoracionForm").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorValoracionForm").hide();
+        $("#divValoracionForm").removeClass("has-error");
+    }
     if (vale){
         $("#modForm").submit();
     }
 });
+
+function reseteaFormularios(){
+    $("#errorName").hide();
+    $("#divName").removeClass("has-error");
+    $("#errorAnio").hide();
+    $("#divAnio").removeClass("has-error");
+    $("#errorUrl-Cont").hide();
+    $("#divUrl-Cont").removeClass("has-error");
+    $("#errorUrl-Port").hide();
+    $("#divUrl-Port").removeClass("has-error");
+    $("#errorValoracion").hide();
+    $("#divValoracion").removeClass("has-error");
+
+    $("#errorNameForm").hide();
+    $("#divNameForm").removeClass("has-error");
+    $("#errorAnioForm").hide();
+    $("#divAnioForm").removeClass("has-error");
+    $("#errorUrlForm").hide();
+    $("#divUrlForm").removeClass("has-error");
+    $("#errorPortadaForm").hide();
+    $("#divPortadaForm").removeClass("has-error");
+    $("#errorValoracionForm").hide();
+    $("#divValoracionForm").removeClass("has-error");
+}

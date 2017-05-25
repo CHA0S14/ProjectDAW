@@ -139,8 +139,9 @@
                         <input type="text" class="form-control" id="url-cont" name="url" placeholder="*URL del contenido" required="">
                         <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrl-Cont"></span>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="year" name="anio" placeholder="Año">
+                    <div class="form-group has-feedback" id="divAnio">
+                        <input type="text" class="form-control" id="anio" name="anio" placeholder="Año">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorAnio"></span>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="addr" name="director" placeholder="Director">
@@ -152,8 +153,9 @@
                         <input type="text" class="form-control" id="url-port" name="portada" placeholder="URL de la portada">
                         <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrl-Port"></span>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="val" name="valoracion" placeholder="Valoración">
+                    <div class="form-group has-feedback" id="divValoracion">
+                        <input type="text" class="form-control" id="valoracion" name="valoracion" placeholder="Valoración">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorValoracion"></span>
                     </div>
                     <div class="form-group">
                         <textarea class="form-control" rows="10" id="desc" name="descripcion" placeholder="Descripción"></textarea>
@@ -190,9 +192,10 @@
                         <input type="text" class="form-control" name="url" id="urlForm" required="">
                         <span class="glyphicon glyphicon-remove form-control-feedback" id="errorUrlForm"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-feedback" id="divAnioForm">
                         <label for="anioForm">Año:</label>
                         <input type="text" class="form-control" name="anio" id="anioForm">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorAnioForm"></span>
                     </div>
                     <div class="form-group">
                         <label for="directorForm">Director:</label>
@@ -207,9 +210,10 @@
                         <input type="text" class="form-control" name="portada" id="portadaForm">
                         <span class="glyphicon glyphicon-remove form-control-feedback" id="errorPortadaForm"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-feedback" id="divValoracionForm">
                         <label for="valoracionForm">Valoración:</label>
                         <input type="text" class="form-control" name="valoracion" id="valoracionForm">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" id="errorValoracionForm"></span>
                     </div>
                     <div class="form-group">
                         <label for="descripcionForm">Descripción:</label>

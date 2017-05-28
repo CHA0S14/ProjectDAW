@@ -120,16 +120,31 @@
                         </button>
                         <h2 class="modal-title">Alta de usuarios</h2>
                     </div>
-                    <form th:action="@{/adminRegisterUsers}" method="post">
+                    <form th:action="@{/adminRegisterUsers}" method="post" id="createUserForm">
                         <div class="modal-body">
-                            <input type="text" class="form-control" name="username" placeholder="Nombre de usuario" required="" autofocus="" autocomplete="Off" />
-                            <input type="text" class="form-control" name="email" placeholder="Email" required="" autocomplete="Off"/>
-                            <input type="text" class="form-control" name="emailConf" placeholder="Confirmar email" required="" autocomplete="Off"/>
-                            <input type="password" class="form-control" name="password" placeholder="Contraseña" required=""/>
-                            <input type="password" class="form-control" name="passwordConf" placeholder="Confirmar contraseña" required=""/>
+                            <div class="form-group has-feedback" id="divName">
+                                <input id="usernameForm" type="text" class="form-control" name="username" placeholder="Nombre de usuario" required="" autofocus="" autocomplete="Off" />
+                                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorName"></span>
+                            </div>
+                            <div class="form-group has-feedback" id="divMail">
+                                <input id="emailFormCreate" type="text" class="form-control" name="email" placeholder="Email" required="" autocomplete="Off"/>
+                                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorMail"></span>
+                            </div>
+                            <div class="form-group has-feedback" id="divMail2">
+                                <input id="emailFormCreate2" type="text" class="form-control" name="emailConf" placeholder="Confirmar email" required="" autocomplete="Off"/>
+                                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorMail2"></span>
+                            </div>
+                            <div class="form-group has-feedback" id="divPass">
+                                <input id="passForm" type="password" class="form-control" name="password" placeholder="Contraseña" required=""/>
+                                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorPass"></span>
+                            </div>
+                            <div class="form-group has-feedback" id="divPass2">
+                                <input id="passForm2" type="password" class="form-control" name="passwordConf" placeholder="Confirmar contraseña" required=""/>
+                                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorPass2"></span>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="crearUsuario">Registrar</button>
                         </div>
                     </form>
                 </div>

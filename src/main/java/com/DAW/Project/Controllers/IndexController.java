@@ -28,9 +28,7 @@ public class IndexController {
     }
 
     @RequestMapping("/registerUsers" )
-    public RedirectView añadirUser(@RequestParam String username, @RequestParam String email,
-                                 @RequestParam String emailConf, @RequestParam String password,
-                                 @RequestParam String passwordConf) {
+    public RedirectView añadirUser(@RequestParam String username, @RequestParam String email, @RequestParam String password) {
 
         GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
         try {

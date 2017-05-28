@@ -36,7 +36,7 @@
     <div class="wrapper">
         <form class="form-signin"  th:action="@{/}"  method="post">
             <div class="alert alert-danger" th:if="${param.regError}">
-                <p>Usuario o email ya usado</p>
+                <p>Usuario ya utilizado</p>
             </div>
             <div class="alert alert-danger" th:if="${param.error}">
                 <p>Credenciales invalidas</p>
@@ -61,12 +61,26 @@
     <div class="wrapper">
         <form class="form-signin" th:action="@{/registerUsers}" method="post" id="createForm">
             <h2 class="form-signin-heading">Registro</h2>
-            <input type="text" class="form-control" name="username" placeholder="Nombre de usuario" required="" autofocus="" autocomplete="Off" />
-            <input type="text" class="form-control" name="email" placeholder="Email" required="" autocomplete="Off" />
-            <input type="text" class="form-control" name="emailConf" placeholder="Confirmar email" required="" autocomplete="Off" />
-            <input type="password" class="form-control" name="password" placeholder="Contraseña" required=""/>
-            <input type="password" class="form-control" name="passwordConf" placeholder="Confirmar contraseña" required=""/>
-            <br/>
+            <div class="form-group has-feedback" id="divName">
+                <input id="usernameForm" type="text" class="form-control" name="username" placeholder="Nombre de usuario" required="" autofocus="" autocomplete="Off" />
+                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorName"></span>
+            </div>
+            <div class="form-group has-feedback" id="divMail">
+                <input id="emailFormCreate" type="text" class="form-control" name="email" placeholder="Email" required="" autocomplete="Off"/>
+                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorMail"></span>
+            </div>
+            <div class="form-group has-feedback" id="divMail2">
+                <input id="emailFormCreate2" type="text" class="form-control" name="emailConf" placeholder="Confirmar email" required="" autocomplete="Off"/>
+                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorMail2"></span>
+            </div>
+            <div class="form-group has-feedback" id="divPass">
+                <input id="passForm" type="password" class="form-control" name="password" placeholder="Contraseña" required=""/>
+                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorPass"></span>
+            </div>
+            <div class="form-group has-feedback" id="divPass2">
+                <input id="passForm2" type="password" class="form-control" name="passwordConf" placeholder="Confirmar contraseña" required=""/>
+                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorPass2"></span>
+            </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit" id="createFormSubmit">Registrar</button>
             <button id="changeLogin" type="button" class="btn btn-link">¿Ya está registrado?</button>
         </form>

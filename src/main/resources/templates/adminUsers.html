@@ -108,7 +108,7 @@
                 <div class="col-md-3">
                     <div class="btn-group pull-right">
                         <button type="button" class="btn btn-warning btnModificar" data-toggle="modal" data-target="#modal-change-user" th:id="${user.id}">Modificar</button>
-                        <button type="button" class="btn btn-danger btnEliminar" data-toggle="modal" data-target="#modal-delete-user" th:id="${user.id}"">Eliminar</button>
+                        <button type="button" class="btn btn-danger btnEliminar" data-toggle="modal" data-target="#modal-delete-user" th:id="${user.id}">Eliminar</button>
                     </div>
                 </div>
                 <form action="/eliminaUser" method="post" th:id="'eliminarForm' + ${user.id}">
@@ -201,8 +201,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="modificar">Aceptar</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="modificar">Aceptar</button>
                         </div>
                     </form>
                 </div>

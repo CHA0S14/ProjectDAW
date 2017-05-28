@@ -103,19 +103,39 @@ public class AdminController {
     @RequestMapping("eliminaUser" )
     public RedirectView eliminarUser(@RequestParam long id){
         userRepository.delete(id);
-        return new RedirectView("adminUsers/?deleted");
+        return new RedirectView("adminUsers?deleted");
     }
 
     @Secured("ROLE_ADMIN")
     @RequestMapping("adminRegisterUsers" )
-    public RedirectView añadirUser(@RequestParam String username, @RequestParam String email,
-                                 @RequestParam String emailConf, @RequestParam String password,
-                                 @RequestParam String passwordConf) {
+    public RedirectView añadirUser(@RequestParam String username, @RequestParam String email, @RequestParam String password) {
 
         GrantedAuthority[] userRoles = {new SimpleGrantedAuthority("ROLE_USER")};
-        userRepository.save(new Usuario(username, password, email, Arrays.asList(userRoles)));
+        try {
+            userRepository.save(new Usuario(username, password, email, Arrays.asList(userRoles)));
+            return new RedirectView( "adminUsers?registered" );
+        } catch (Exception ex) {
+            return new RedirectView( "adminUsers?register_error" );
+        }
+    }
 
-        return new RedirectView( "adminUsers" );
+    @Secured("ROLE_ADMIN")
+    @RequestMapping("/modificarUsuario" )
+    public RedirectView modUser(@RequestParam long id, @RequestParam String username, @RequestParam String email,
+                                @RequestParam String password, @RequestParam int type) {
+        GrantedAuthority[] userRoles;
+        if (type == 1)
+            userRoles = new GrantedAuthority[]{ new SimpleGrantedAuthority("ROLE_USER") };
+        else
+            userRoles = new GrantedAuthority[]{ new SimpleGrantedAuthority("ROLE_ADMIN") };
+        Usuario user = new Usuario(username, password, email, Arrays.asList(userRoles));
+        user.setId(id);
+        if (password == "") {
+            user.setPass(userRepository.findOne(id).getPass());
+        }
+
+        userRepository.save(user);
+        return new RedirectView("adminUsers?changed" );
     }
 
     private Pelicula rellenarPelicula(String nombre, String url, String anio, String director, String reparto, String portada, String valoracion, String descripcion){

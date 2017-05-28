@@ -16,7 +16,6 @@ $(document).on('click',"#eliminar",function () {
 $(document).on('click',".btnModificar",function (e) {
     idUsuario = e.target.id;
     //reseteaFormularios();
-
     $("#idForm").val(idUsuario);
     $("#usrForm").val( $("#usuario" + idUsuario).text().split(":")[1]);
     $("#emailForm").val($("#email" + idUsuario).text().split(":")[1]);
@@ -76,6 +75,22 @@ $(document).on('click',"#crearUsuario",function (e) {
     }
 });
 
+$(document).on('click',"#modificar",function (e) {
+    e.preventDefault();
+    var vale = true;
+    if($("#pwdForm").val() !== $("#pwdForm2").val()){
+        $("#errorPassword2").show();
+        $("#divPassword2").addClass("has-error");
+        vale = false;
+    }else{
+        $("#errorPassword2").hide();
+        $("#divPassword2").removeClass("has-error");
+    }
+    if (vale) {
+        $("#modForm").submit();
+    }
+});
+
 function reseteaFormularios(){
     $("#errorName").hide();
     $("#divName").removeClass("has-error");
@@ -87,4 +102,8 @@ function reseteaFormularios(){
     $("#divPass").removeClass("has-error");
     $("#errorPass2").hide();
     $("#divPass2").removeClass("has-error");
+    $("#errorPassword").hide();
+    $("#divPassword").removeClass("has-error");
+    $("#errorPassword2").hide();
+    $("#divPassword2").removeClass("has-error");
 }

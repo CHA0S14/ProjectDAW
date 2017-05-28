@@ -84,7 +84,16 @@
             <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#modal-create-user">Crear nuevo usuario</button>
             <br/>
             <div class="alert alert-info" th:if="${param.deleted}">
-                <p>Usuario eliminado</p>
+                <p>Usuario eliminado correctamente</p>
+            </div>
+            <div class="alert alert-info" th:if="${param.registered}">
+                <p>Usuario registrado correctamente</p>
+            </div>
+            <div class="alert alert-info" th:if="${param.changed}">
+                <p>Usuario modificado correctamente</p>
+            </div>
+            <div class="alert alert-danger" th:if="${param.register_error}">
+                <p>El nombre de usuario ya existe</p>
             </div>
         </div>
         <div class="container"  id="listaUsers">
@@ -163,26 +172,28 @@
                     <form action="modificarUsuario" method="post" id="modForm">
                         <input type="hidden" name="id" id="idForm">
                         <div class="modal-body">
-                            <div class="form-group">
+                            <div class="form-group has-feedback" id="divUser">
                                 <label for="usrForm">Nombre de usuario:</label>
-                                <input type="text" class="form-control" id="usrForm">
+                                <input type="text" class="form-control" id="usrForm" name="username">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-feedback" id="divEmail">
                                 <label for="emailForm">Dirección de correo:</label>
-                                <input type="text" class="form-control" id="emailForm">
+                                <input type="text" class="form-control" id="emailForm" name="email">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-feedback" id="divPassword">
                                 <label for="pwdForm">Contraseña:</label>
-                                <input type="password" class="form-control" id="pwdForm">
+                                <input type="password" class="form-control" id="pwdForm" placeholder="********" name="password">
+                                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorPassword"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group has-feedback" id="divPassword2">
                                 <label for="pwdForm2">Confirmacion de contraseña:</label>
-                                <input type="password" class="form-control" id="pwdForm2">
+                                <input type="password" class="form-control" id="pwdForm2" placeholder="********">
+                                <span class="glyphicon glyphicon-remove form-control-feedback" id="errorPassword2"></span>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row has-feedback" id="divType">
                                 <div class="col-md-6">
                                     <label for="tipoForm">Tipo:</label>
-                                    <select class="form-control" id="tipoForm">
+                                    <select class="form-control" id="tipoForm" name="type">
                                         <option value="1">Usuario</option>
                                         <option value="2">Administrador</option>
                                     </select>
@@ -190,7 +201,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                            <button type="submit" class="btn btn-primary" id="modificar">Aceptar</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
                     </form>

@@ -9,7 +9,10 @@
     <div class="col-md-3">
         <div class="btn-group pull-right">
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-change-user">Modificar</button>
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-user">Eliminar</button>
+            <button type="button" class="btn btn-danger btnEliminar" data-toggle="modal" data-target="#modal-delete-user" th:id="${user.id}">Eliminar</button>
         </div>
     </div>
+    <form action="/eliminaUser" method="post" th:id="'eliminarForm' + ${user.id}">
+        <input type="hidden" th:value="${user.id}" name="id">
+    </form>
 </section>

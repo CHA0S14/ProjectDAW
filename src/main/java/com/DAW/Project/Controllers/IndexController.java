@@ -28,7 +28,7 @@ public class IndexController {
     }
 
     @RequestMapping("/registerUsers" )
-    public RedirectView register(@RequestParam String username, @RequestParam String email,
+    public RedirectView añadirUser(@RequestParam String username, @RequestParam String email,
                                  @RequestParam String emailConf, @RequestParam String password,
                                  @RequestParam String passwordConf) {
 

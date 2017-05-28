@@ -90,15 +90,15 @@
         <div class="container"  id="listaUsers">
             <section th:each="user : ${users}" class="row well">
                 <div class="col-md-5">
-                    <p th:utext="'<strong>Usuario:</strong>' + ${user.usuario}"></p>
-                    <p th:utext="'<strong>Email:</strong>' + ${user.email}"></p>
+                    <p th:id="'usuario' + ${user.id}" th:utext="'<strong>Usuario:</strong>' + ${user.usuario}"></p>
+                    <p th:id="'email' + ${user.id}" th:utext="'<strong>Email:</strong>' + ${user.email}"></p>
                 </div>
                 <div class="col-md-4">
-                    <p th:utext="'<strong>Tipo:</strong>' + ${user.tipo}"><strong>Tipo:</strong> Usuario</p>
+                    <p th:id="'tipo' + ${user.id}" th:utext="'<strong>Tipo:</strong>' + ${user.tipo}"><strong>Tipo:</strong></p>
                 </div>
                 <div class="col-md-3">
                     <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-change-user">Modificar</button>
+                        <button type="button" class="btn btn-warning btnModificar" data-toggle="modal" data-target="#modal-change-user" th:id="${user.id}">Modificar</button>
                         <button type="button" class="btn btn-danger btnEliminar" data-toggle="modal" data-target="#modal-delete-user" th:id="${user.id}"">Eliminar</button>
                     </div>
                 </div>
@@ -145,34 +145,40 @@
                         </button>
                         <h3 class="modal-title">Información de usuario</h3>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="usr2">Nombre de usuario:</label>
-                            <input type="text" class="form-control" value="Manolo López del Valle" id="usr2">
-                        </div>
-                        <div class="form-group">
-                            <label for="email2">Dirección de correo:</label>
-                            <input type="text" class="form-control" value="mlopez@pepe.com" id="email2">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd2">Contraseña:</label>
-                            <input type="password" class="form-control" id="pwd2" placeholder="********">
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label for="sel1">Tipo:</label>
-                                <select class="form-control" id="sel1">
-                                    <option value="0">-- Seleccione el tipo de usuario --</option>
-                                    <option value="1">Usuario</option>
-                                    <option value="2">Administrador</option>
-                                </select>
+                    <form action="modificarUsuario" method="post" id="modForm">
+                        <input type="hidden" name="id" id="idForm">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="usrForm">Nombre de usuario:</label>
+                                <input type="text" class="form-control" id="usrForm">
+                            </div>
+                            <div class="form-group">
+                                <label for="emailForm">Dirección de correo:</label>
+                                <input type="text" class="form-control" id="emailForm">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwdForm">Contraseña:</label>
+                                <input type="password" class="form-control" id="pwdForm">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwdForm2">Confirmacion de contraseña:</label>
+                                <input type="password" class="form-control" id="pwdForm2">
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="tipoForm">Tipo:</label>
+                                    <select class="form-control" id="tipoForm">
+                                        <option value="1">Usuario</option>
+                                        <option value="2">Administrador</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

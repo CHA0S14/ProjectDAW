@@ -96,7 +96,7 @@ public class AdminController {
     @RequestMapping("eliminaPeli" )
     public RedirectView eliminarPeli(@RequestParam long id){
         peliRepository.delete(id);
-        return new RedirectView("adminPelis");
+        return new RedirectView("adminPelis?deleted");
     }
 
     @Secured("ROLE_ADMIN")

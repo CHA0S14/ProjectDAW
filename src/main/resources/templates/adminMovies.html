@@ -83,6 +83,9 @@
 <div class="container">
     <button class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#modal-create-movie">Crear nueva película</button>
     <br/>
+    <div class="alert alert-info" th:if="${param.deleted}">
+        <p>Pelicula eliminada</p>
+    </div>
 </div>
 <div class="container" id="listaPelis">
     <section th:each="peli : ${pelis}" class="row well">
